@@ -1,12 +1,15 @@
 package com.example.demo.Menu;
 
+import com.example.demo.DAOclass.UserDAOimplement;
 import java.util.Scanner;
 
 public class Register {
     Scanner scanner = new Scanner(System.in);
 
     public void reg(char letter) {
-        
+        UserDAOimplement usr_register = new UserDAOimplement(); 
+        Login usr_login = new Login();
+
         System.out.println("(R) Register");
         System.out.println("(L) Login");
 
@@ -20,20 +23,19 @@ public class Register {
         switch (letter) {
         //register    
         case 'r':
-            //m.register(letter);          
+            usr_register.register(letter);
             break;
         case 'R':
-            //m.register(letter);          
+            usr_register.register(letter);         
             break;
         
         //login
         case 'l':
-            //lm.login_menu(letter);
+            usr_login.login_menu(letter);
             break;
         case 'L':
-            //lm.login_menu(letter);
+            usr_login.login_menu(letter);
             break;
         }
-        
-     }
+    }
 }
