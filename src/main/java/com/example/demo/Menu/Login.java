@@ -34,8 +34,10 @@ public class Login { //System.out.println("");
         
         //login as customer
         case 'c':
+            logIn.Customer_login();
             break;
         case 'C':
+            logIn.Customer_login();
             break;
         }
     }
