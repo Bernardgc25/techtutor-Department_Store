@@ -16,6 +16,8 @@ public class UserDAOimplement implements UserDAO{
     int del_tid = 0;
     int upd_tid = 0;
 
+      //list of visitors 
+    //public List<Visitor> visitors_list = new ArrayList<Visitor>();;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -37,18 +39,18 @@ public class UserDAOimplement implements UserDAO{
     }
 
     @Override
-    public void Client_login() {
+    public void Admin_login() {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'Client_login'");
+        //throw new UnsupportedOperationException("Unimplemented method 'Admin_login'");
+
+
+
     }
 
     @Override
-    public void Visitor_login() {
+    public void Customer_login() {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'Visitor_login'");
-    
-    
-    
+        //throw new UnsupportedOperationException("Unimplemented method 'Customer_login'");
     }
     
 }
