@@ -9,17 +9,21 @@ import java.util.Scanner;
 
 
 public class UserDAOimplement implements UserDAO{
+    //user input 
     String firstName, lastName; 
-    char[] userName, password, useremail, un, pwd, epwd;
+    char[] userName, useremail, password;
 
     char letter = '\0'; 
     int t_id = 0;
     int del_tid = 0;
     int upd_tid = 0;
 
+    //test input
+    String testfirstN, testlastN; 
+    char[] testuserN, testuseremail, testpwd;
+
     ///Admin 
     public List<Admin> Adminlist = new ArrayList<Admin>(1);
-  
     
       //list of visitors 
     //public List<Visitor> visitors_list = new ArrayList<Visitor>();;
@@ -77,12 +81,13 @@ public class UserDAOimplement implements UserDAO{
 		    System.out.flush();
             //display info
             System.out.println("you have succesfully register a client account");
+            System.out.println("\n");
         }
         //register an customer  account
         else if(choice == 'c' || choice == 'C'){
             // code
         }
-        
+         
 
 
     }
@@ -91,6 +96,39 @@ public class UserDAOimplement implements UserDAO{
     public void Admin_login() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'Admin_login'");
+        //validate admin credentials 
+        Admin ad = new Admin();
+        
+        System.out.print("Enter username: ");
+        userName = scanner.next().toCharArray();
+        scanner.nextLine();
+
+        //testuserN = ad.getUsername();
+
+        System.out.print("Enter password: ");
+        password= scanner.next().toCharArray();
+        scanner.nextLine();
+
+        //testpwd = ad.getPassword();
+
+        System.out.print("\033[H\033[2J");  
+		System.out.flush();  
+        
+        //validate records 
+        
+        int i=0;
+        //get record from database
+        System.out.println("verifying record from database");  
+		
+        /* 
+        if(Adminlist.get(i).getUsername().equals(userName) && Adminlist.get(i).getPassword().equals(password)){
+            System.out.println("successfully logged-in..");
+        }
+        else{
+            System.out.println("No records, Invalid try again");     
+        }
+            
+        */
 
 
 

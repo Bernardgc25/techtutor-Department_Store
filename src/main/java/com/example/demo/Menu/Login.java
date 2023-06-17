@@ -2,13 +2,16 @@ package com.example.demo.Menu;
 
 import java.util.Scanner;
 
+import com.example.demo.DAOclass.UserDAOimplement;
+
 
 public class Login { //System.out.println("");
 
     Scanner scanner = new Scanner(System.in);
     
     public void login_menu(char letter) {
-         //System.out.println("");
+        UserDAOimplement logIn = new UserDAOimplement(); 
+    
         System.out.println("Log-in as:");
         System.out.println("(A) Admin");
         System.out.println("(C) Customer");
@@ -23,8 +26,10 @@ public class Login { //System.out.println("");
         switch (letter) {
         //login as Admin 
         case 'a':
+            logIn.Admin_login();
             break;
         case 'A':
+            logIn.Admin_login();
             break;
         
         //login as customer
