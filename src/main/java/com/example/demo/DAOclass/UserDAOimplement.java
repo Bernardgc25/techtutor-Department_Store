@@ -214,7 +214,6 @@ public class UserDAOimplement implements UserDAO{
         System.out.println("verifying record from Customer database");  
         System.out.println("\n");  
 		
-      
     }
     
 }
