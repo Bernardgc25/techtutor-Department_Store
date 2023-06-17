@@ -1,6 +1,7 @@
 package com.example.demo.DAOclass;
 
 import com.example.demo.DAOinterface.UserDAO;
+import com.example.demo.UserModel.Admin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,10 @@ public class UserDAOimplement implements UserDAO{
     int del_tid = 0;
     int upd_tid = 0;
 
+    ///Admin 
+    public List<Admin> Adminlist = new ArrayList<Admin>(1);
+  
+    
       //list of visitors 
     //public List<Visitor> visitors_list = new ArrayList<Visitor>();;
 
@@ -35,6 +40,50 @@ public class UserDAOimplement implements UserDAO{
 
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
+
+        //register an Admin account
+        if (choice == 'a' || choice == 'A') {
+            Admin ad = new Admin();
+
+            //save input into variable including spaces 
+            scanner.nextLine(); 
+            System.out.print("Enter firstName: ");
+            firstName = scanner.nextLine();
+            ad.setFirstname(firstName);
+            //scanner.nextLine(); 
+
+            System.out.print("Enter lastName: ");
+            lastName = scanner.nextLine();
+            ad.setLastname(lastName);
+
+            System.out.print("Enter Email: ");
+            lastName = scanner.nextLine();
+            ad.setEmail(useremail);
+            
+            System.out.print("Enter userName: ");
+            userName = scanner.next().toCharArray();
+            ad.setUsername(userName);
+            scanner.nextLine();
+            
+            System.out.print("Enter password: ");
+            password = scanner.next().toCharArray();
+            ad.setPassword(password);
+            scanner.nextLine(); 
+
+            //add to adminlist
+            Adminlist.add(ad);
+
+            System.out.print("\033[H\033[2J");  
+		    System.out.flush();
+            //display info
+            System.out.println("you have succesfully register a client account");
+        }
+        //register an customer  account
+        else if(choice == 'c' || choice == 'C'){
+            // code
+        }
+        
+
 
     }
 

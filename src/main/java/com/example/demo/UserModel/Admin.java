@@ -7,8 +7,8 @@ public class Admin extends User{
         super();
     }
 
-     public Admin(String fname, String lname, char[] uname, char[]upwd, char[] uemail, char[] epwd){
-        super(fname, lname, uname, upwd, uemail, epwd);
+    public Admin(String fname, String lname, char[] uname,  char[] uemail, char[]pwd){
+        super(fname, lname, uname, uemail, pwd);
     }
 
 }

@@ -10,13 +10,12 @@ public class User{
 
     }
 
-    public User(String fname, String lname, char[] uname, char[]upwd, char[] uemail, char[] epwd){
+    public User(String fname, String lname, char[] uname,  char[] uemail, char[]pwd){
         this.firstname = fname; 
         this.lastname = lname;
         this.username = uname; 
-        this.password = upwd; 
         this.email = uemail; 
-        this.password = epwd; 
+        this.password = pwd; 
     }
 
     //setters and getters
