@@ -13,11 +13,11 @@ import java.util.Scanner;
 
 public class ProdfuncDAOimplement implements ProdfuncDAO{
 
-    HashMap<Integer, String> productInfo = new HashMap<>();
+    HashMap<Integer, String> new_product = new HashMap<>();
 
     Scanner scanner = new Scanner(System.in);
 
-   
+    Product p = new Product();
 
     int productId, availableQuantity; 
     String productName, prodCategory; 
@@ -31,23 +31,30 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         System.out.print("\033[H\033[2J");  
 		System.out.flush();    
             
-        //add new product
+        //prompt product information
         System.out.print("Enter Product Id: ");
         productId = scanner.nextInt();
+        p.setProductId(productId);
 
         System.out.print("Enter Product Name: ");
         productName = scanner.nextLine();
-        
+        p.setProductName(productName);
+
         System.out.print("Enter Category: ");
         prodCategory = scanner.nextLine();
+        p.setCategory(prodCategory);
 
         System.out.print("Enter Quantity: ");
         productId = scanner.nextInt();
-        
+        p.setAvailableQuantity(availableQuantity);
+
         System.out.print("Enter Price: ");
         sellingPrice = scanner.nextFloat();
+        p.setBuyingPrice(sellingPrice);
         
-        Product nprod = new Product();
+        //add product to hashmap
+        new_product.put(productId, productName);
+        
     }
 
     @Override
