@@ -15,7 +15,7 @@ import javax.swing.RowFilter.Entry;
 
 public class ProdfuncDAOimplement implements ProdfuncDAO{
 
-    HashMap<Integer, String> listOfproduct = new HashMap<>();
+    HashMap<String, Product> listOfproduct = new HashMap<>();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -55,8 +55,8 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         newproduct.setBuyingPrice(sellingPrice);
         
         //add product to hashmap
-        listOfproduct.put(productId, productName);
-        
+        //listOfproduct.put(productId, productName);
+        listOfproduct.put(newproduct.getProductName(), newproduct);
     }
 
     @Override
