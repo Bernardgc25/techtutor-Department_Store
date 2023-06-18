@@ -1,12 +1,9 @@
 package com.example.demo.DAOinterface;
 
-public interface ProdfuncDAO {
+public interface StoreInformationDAO {
     
     //add new product by Admin
     public void addProduct();
-
-    //update product by Admin 
-    public void updateProduct();
 
     //delete product by Admin
     public void removeProduct();
@@ -24,10 +21,10 @@ public interface ProdfuncDAO {
     public void searchbyProductName();
 
     //display total expenses 
-    public void dispExpenses();
+    public double dispExpenses();
 
     //display total profit 
-    public void dispProfit();
+    public double dispProfit();
 
 
 }

@@ -2,7 +2,6 @@ package com.example.demo.OptionMenu;
 
 import java.util.Scanner;
 
-import java.util.Scanner;
 
 public class optionMenu {
     

@@ -1,11 +1,12 @@
 package com.example.demo.DAOclass;
 
-import com.example.demo.DAOinterface.ProdfuncDAO;
+import com.example.demo.DAOinterface.StoreInformationDAO;
 import com.example.demo.UserModel.Admin;
 import com.example.demo.UserModel.Customer;
 import com.example.demo.UserModel.Item;
 import com.example.demo.UserModel.Product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,58 +16,47 @@ import javax.swing.RowFilter.Entry;
 
 
 
-public class ProdfuncDAOimplement implements ProdfuncDAO{
+public class StoreInformationDAOimplement implements StoreInformationDAO{
 
     HashMap<Integer, Product> listOfproduct = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
     Product newproduct = new Product();
     char choice = '\0';
     Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
+    ArrayList<Double> expenses = new ArrayList<Double>();
 
     @Override
     public void addProduct() {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'addProduct'");
-    /* 
-    int productId; 
-    int availableQuantity; 
-    String productName, productCategory; 
-    float sellingPrice;
-    */
     
+
         System.out.print("\033[H\033[2J");  
 		System.out.flush();    
             
         //prompt product information
         System.out.print("Enter Product Id: ");
-        //productId = scanner.nextInt();
         newproduct.setProductId(scanner.nextInt());
 
         System.out.print("Enter Product Name: ");
-        //productName = scanner.nextLine();
         newproduct.setProductName(scanner.nextLine());
 
         System.out.print("Enter Category: ");
-        //productCategory = scanner.nextLine();
         newproduct.setCategory(scanner.nextLine());
 
         System.out.print("Enter Quantity: ");
-        //availableQuantity = scanner.nextInt();
         newproduct.setAvailableQuantity(scanner.nextInt());
 
         System.out.print("Enter Price: ");
-        //sellingPrice = scanner.nextFloat();
-        newproduct.setBuyingPrice(scanner.nextDouble());
+        double buyingP = scanner.nextDouble();
+        newproduct.setBuyingPrice(buyingP);
         
+        //add buying price to expenses
+        expenses.add(buyingP);
+
         //add product to hashmap
         //listOfproduct.put(newproduct.getProductName(), newproduct);
         listOfproduct.put(newproduct.getProductId(), newproduct);
-    }
-
-    @Override
-    public void updateProduct() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateProduct'");
     }
 
     @Override
@@ -90,10 +80,6 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                         + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
                 }
                     
-                // listOfproduct.entrySet().forEach( entry -> {
-                // System.out.println( entry.getKey() + " => " + entry.getValue() );
-                // });
-
                 System.out.println("");
                 System.out.println("");
                 
@@ -329,15 +315,21 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     }
 
     @Override
-    public void dispExpenses() {
+    public double dispExpenses() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'dispExpenses'");
-    
+       
+        //display total expenses 
+        double sum = 0;
+        for(int i = 0; i < expenses.size(); i++)
+        sum += expenses.get(i);
+        
+        return sum;
     
     }
 
     @Override
-    public void dispProfit() {
+    public double dispProfit() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dispProfit'");
     }
