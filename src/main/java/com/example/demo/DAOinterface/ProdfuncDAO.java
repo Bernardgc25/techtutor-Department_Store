@@ -28,4 +28,6 @@ public interface ProdfuncDAO {
 
     //display total profit 
     public void dispProfit();
+
+
 }

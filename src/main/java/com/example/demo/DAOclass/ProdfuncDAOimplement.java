@@ -15,7 +15,7 @@ import javax.swing.RowFilter.Entry;
 
 public class ProdfuncDAOimplement implements ProdfuncDAO{
 
-    HashMap<String, Product> listOfproduct = new HashMap<>();
+    HashMap<Product, String> listOfproduct = new HashMap<>();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -55,8 +55,8 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         newproduct.setBuyingPrice(sellingPrice);
         
         //add product to hashmap
-        //listOfproduct.put(productId, productName);
-        listOfproduct.put(newproduct.getProductName(), newproduct);
+        //listOfproduct.put(newproduct.getProductName(), newproduct);
+        listOfproduct.put(newproduct, newproduct.getProductName());
     }
 
     @Override
@@ -172,7 +172,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     @Override
     public void dispProductbyCategory() {
         // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
+        throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
     }
 
     @Override
@@ -180,6 +180,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'searchProduct'");
 
+        Object prodId; 
         boolean searchnotDone = true;
         
         while(searchnotDone){
@@ -187,9 +188,11 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
             System.out.flush();
 
             System.out.print("Enter productId to search: ");
-            productId = scanner.nextInt();
+            //productId = scanner.nextInt();
+            prodId = scanner.nextInt();
             
-            if (listOfproduct.containsValue(productId)){
+            //search by productId
+            if (listOfproduct.containsValue(prodId)){
                 System.out.println("productId exist...");
                 System.out.println("");
 
@@ -200,7 +203,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                 });
                 
                 System.out.println("");
-                System.out.println("(S) seach for productId");
+                System.out.println("(S) search for productId");
                 System.out.println("(M) go back to menu: ");
                 System.out.println("");
                 System.out.print("Enter a choice: ");
@@ -213,9 +216,9 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                 }
             } 
             else {
-                System.out.println("taskid do not exist!!!");
+                System.out.println("productId do not exist!!!");
                 System.out.println("");
-                System.out.println("(S) seach for taskid");
+                System.out.println("(S) search for productId");
                 System.out.println("(M) go back to menu: ");
                 System.out.println("");
                 System.out.print("Enter a choice: ");
@@ -231,6 +234,67 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     }
 
     @Override
+    public void searchbyProductCategory() {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'searchbyProductCategory'");
+
+
+        Object prodCategory; 
+        boolean searchnotDone = true;
+        
+        while(searchnotDone){
+            System.out.print("\033[H\033[2J");  
+            System.out.flush();
+
+            System.out.print("Enter productId to search: ");
+            //productId = scanner.nextInt();
+            prodCategory = scanner.nextLine();
+            
+            //search by productId
+            if (listOfproduct.containsValue(prodCategory)){
+                System.out.println("productId exist...");
+                System.out.println("");
+
+                //display tasks
+                System.out.println("list of products:"); 
+                listOfproduct.entrySet().forEach( entry -> {
+                System.out.println( entry.getKey() + " => " + entry.getValue() );
+                });
+                
+                System.out.println("");
+                System.out.println("(S) search for Category");
+                System.out.println("(M) go back to menu: ");
+                System.out.println("");
+                System.out.print("Enter a choice: ");
+                choice = scanner.next().charAt(0);
+                if(choice == 'm' || choice == 'M'){
+                    searchnotDone = false; 
+                }
+                else if (choice == 's' || choice == 'S'){
+                    searchnotDone = true;
+                }
+            } 
+            else {
+                System.out.println("Category do not exist!!!");
+                System.out.println("");
+                System.out.println("(S) search for Category");
+                System.out.println("(M) go back to menu: ");
+                System.out.println("");
+                System.out.print("Enter a choice: ");
+                choice = scanner.next().charAt(0);
+                if(choice == 'm' || choice == 'M'){
+                    searchnotDone = false; 
+                }
+                else if (choice == 's' || choice == 'S'){
+                    searchnotDone = true;
+                }
+            }
+        }     
+
+
+    }
+
+    @Override
     public void dispExpenses() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dispExpenses'");
@@ -242,10 +306,4 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         throw new UnsupportedOperationException("Unimplemented method 'dispProfit'");
     }
 
-    @Override
-    public void searchbyProductCategory() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'searchbyProductCategory'");
-    }
-    
 }
