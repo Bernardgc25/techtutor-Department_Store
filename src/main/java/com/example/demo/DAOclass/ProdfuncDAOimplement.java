@@ -178,7 +178,56 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     @Override
     public void searchProduct() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'searchProduct'");
+        //throw new UnsupportedOperationException("Unimplemented method 'searchProduct'");
+
+        boolean searchnotDone = true;
+        
+        while(searchnotDone){
+            System.out.print("\033[H\033[2J");  
+            System.out.flush();
+
+            System.out.print("Enter productId to search: ");
+            productId = scanner.nextInt();
+            
+            if (new_product.containsValue(productId)){
+                System.out.println("productId exist...");
+                System.out.println("");
+
+                //display tasks
+                System.out.println("list of products:"); 
+                new_product.entrySet().forEach( entry -> {
+                System.out.println( entry.getKey() + " => " + entry.getValue() );
+                });
+                
+                System.out.println("");
+                System.out.println("(S) seach for productId");
+                System.out.println("(M) go back to menu: ");
+                System.out.println("");
+                System.out.print("Enter a choice: ");
+                choice = scanner.next().charAt(0);
+                if(choice == 'm' || choice == 'M'){
+                    searchnotDone = false; 
+                }
+                else if (choice == 's' || choice == 'S'){
+                    searchnotDone = true;
+                }
+            } 
+            else {
+                System.out.println("taskid do not exist!!!");
+                System.out.println("");
+                System.out.println("(S) seach for taskid");
+                System.out.println("(M) go back to menu: ");
+                System.out.println("");
+                System.out.print("Enter a choice: ");
+                choice = scanner.next().charAt(0);
+                if(choice == 'm' || choice == 'M'){
+                    searchnotDone = false; 
+                }
+                else if (choice == 's' || choice == 'S'){
+                    searchnotDone = true;
+                }
+            }
+        }     
     }
 
     @Override
