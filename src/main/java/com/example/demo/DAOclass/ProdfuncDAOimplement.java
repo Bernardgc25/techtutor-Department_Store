@@ -15,11 +15,11 @@ import javax.swing.RowFilter.Entry;
 
 public class ProdfuncDAOimplement implements ProdfuncDAO{
 
-    HashMap<Integer, String> new_product = new HashMap<>();
+    HashMap<Integer, String> listOfproduct = new HashMap<>();
 
     Scanner scanner = new Scanner(System.in);
 
-    Product p = new Product();
+    Product newproduct = new Product();
 
     int productId, availableQuantity; 
     String productName, prodCategory; 
@@ -36,26 +36,26 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         //prompt product information
         System.out.print("Enter Product Id: ");
         productId = scanner.nextInt();
-        p.setProductId(productId);
+        newproduct.setProductId(productId);
 
         System.out.print("Enter Product Name: ");
         productName = scanner.nextLine();
-        p.setProductName(productName);
+        newproduct.setProductName(productName);
 
         System.out.print("Enter Category: ");
         prodCategory = scanner.nextLine();
-        p.setCategory(prodCategory);
+        newproduct.setCategory(prodCategory);
 
         System.out.print("Enter Quantity: ");
         productId = scanner.nextInt();
-        p.setAvailableQuantity(availableQuantity);
+        newproduct.setAvailableQuantity(availableQuantity);
 
         System.out.print("Enter Price: ");
         sellingPrice = scanner.nextFloat();
-        p.setBuyingPrice(sellingPrice);
+        newproduct.setBuyingPrice(sellingPrice);
         
         //add product to hashmap
-        new_product.put(productId, productName);
+        listOfproduct.put(productId, productName);
         
     }
 
@@ -73,10 +73,10 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         boolean remove_prod = true; 
 
         while(remove_prod){
-            if(!new_product.isEmpty()){
+            if(!listOfproduct.isEmpty()){
                 //display products           
                 System.out.println("list of products:"); 
-                new_product.entrySet().forEach( entry -> {
+                listOfproduct.entrySet().forEach( entry -> {
                 System.out.println( entry.getKey() + " => " + entry.getValue() );
                 });
 
@@ -87,13 +87,13 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                 System.out.print("Enter a product to remove: ");
                 System.out.print("Enter Product Id: ");
                 productId = scanner.nextInt();
-                p.setProductId(productId);
+                newproduct.setProductId(productId);
 
                 System.out.print("Enter Product Name: ");
                 productName = scanner.nextLine();
-                p.setProductName(productName);
+                newproduct.setProductName(productName);
                 
-                new_product.remove(productId, productName);
+                listOfproduct.remove(productId, productName);
 
                 //clear screen
                 System.out.print("\033[H\033[2J");  
@@ -101,7 +101,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
 
                 //display products           
                 System.out.println("list of products:"); 
-                new_product.entrySet().forEach( entry -> {
+                listOfproduct.entrySet().forEach( entry -> {
                 System.out.println( entry.getKey() + " => " + entry.getValue() );
                 });
 
@@ -146,13 +146,13 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         //clear screen
         System.out.print("\033[H\033[2J");  
         System.out.flush();
-        if(new_product.isEmpty()){
+        if(listOfproduct.isEmpty()){
             System.out.print("list is empty!! ");
                 
         }
         else{
             System.out.println("list of products:"); 
-            new_product.entrySet().forEach( entry -> {
+            listOfproduct.entrySet().forEach( entry -> {
             System.out.println( entry.getKey() + " => " + entry.getValue() );
             });
         
@@ -172,11 +172,11 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     @Override
     public void dispProductbyCategory() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
+        //throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
     }
 
     @Override
-    public void searchProduct() {
+    public void searchbyProductId() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'searchProduct'");
 
@@ -189,13 +189,13 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
             System.out.print("Enter productId to search: ");
             productId = scanner.nextInt();
             
-            if (new_product.containsValue(productId)){
+            if (listOfproduct.containsValue(productId)){
                 System.out.println("productId exist...");
                 System.out.println("");
 
                 //display tasks
                 System.out.println("list of products:"); 
-                new_product.entrySet().forEach( entry -> {
+                listOfproduct.entrySet().forEach( entry -> {
                 System.out.println( entry.getKey() + " => " + entry.getValue() );
                 });
                 
@@ -240,6 +240,12 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     public void dispProfit() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dispProfit'");
+    }
+
+    @Override
+    public void searchbyProductCategory() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'searchbyProductCategory'");
     }
     
 }
