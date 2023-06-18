@@ -2,6 +2,8 @@ package com.example.demo.OptionMenu;
 
 import java.util.Scanner;
 
+import com.example.demo.DAOclass.StoreInformationDAOimplement;
+
 
 public class optionMenu {
     
@@ -29,34 +31,34 @@ public class optionMenu {
                             "7- Exit",
                             
                         };  
-
+        StoreInformationDAOimplement sm = new StoreInformationDAOimplement(); 
         int option = 1;
-        while (option!=4){
+        while (option != 7){
             printMenu(options);
             try {
                 option = scanner.nextInt();
                 switch (option){
                     case 1: 
+                        sm.searchbyProductId();
                         break;
-                    
                     case 2:  
+                        sm.searchbyProductName();
                         break;
-                    
-                    case 3: 
+                    case 3:
+                        sm.dispsallProduct();
                         break;
-                    
-                    case 4: 
+                    case 4:
+                        sm.dispProductbyCategory(); 
                         break;
-                    
-                    case 5: 
+                    case 5:
+                        sm.dispExpenses(); 
                         break;
-                    
-                    case 6: 
+                    case 6:
+                        sm.dispProfit(); 
                         break;                    
-                    
                     case 7: 
                         System.out.print("\033[H\033[2J");  
-		                System.out.flush();
+                        System.out.flush();
                         break;
                 }
             }
@@ -66,92 +68,7 @@ public class optionMenu {
             }
         }
 
-        return opt;
-
-        /* 
-        System.out.println("You are logged in as Admin..");
-        System.out.println("(I) Search a product by productID");
-        System.out.println("(N) Search a product by productName");
-        System.out.println("(D) Display products");
-        System.out.println("(C) Display products by Category");
-        System.out.println("(E) Display total Expenses");
-        System.out.println("(P) Display total Profits");
-        System.out.println("(X) Exit");
-        
-        System.out.println("");
-        System.out.print("Enter a choice: ");
-        choice = scanner.next().charAt(0);
-        
-        switch (choice) {
-        //Search a product by productID  
-        case 'I':
-                        
-            break;
-        case 'i':
-                        
-            break;
-        
-        //Search a product by productName  
-        case 'N':
-            
-            break;
-        case 'n':
-            
-            break;
-        
-        //Display products
-        case 'D':
-            break;
-        case 'd':
-            break;
-        
-        //Display products by Category  
-        case 'C':
-           
-            break;
-        
-        case 'c':
-           
-            break;
-        
-        //Display total Expenses
-        case 'E':
-           
-            break;
-        
-        case 'e':
-           
-            break;  
-            
-        //Display total Profits
-        case 'P':
-           
-            break;
-        
-        case 'p':
-           
-            break;
-            
-
-        //exit menu    
-        case 'X':
-            System.out.print("\033[H\033[2J");  
-		    System.out.flush();
-       
-            break;
-        
-        case 'x':
-            System.out.print("\033[H\033[2J");  
-		    System.out.flush();
-               
-            break;    
-
-        }
-        
-        
-        return choice;
-        */
-    
+        return opt;    
     }
 
     public char customerMenu(char choice){
