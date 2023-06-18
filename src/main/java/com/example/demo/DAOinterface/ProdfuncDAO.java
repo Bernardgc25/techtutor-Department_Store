@@ -1,6 +1,6 @@
 package com.example.demo.DAOinterface;
 
-public interface TaskDAO {
+public interface ProdfuncDAO {
     
     //add new product by Admin
     public void addProduct();
@@ -13,6 +13,9 @@ public interface TaskDAO {
 
     //display list of products 
     public void dispProduct();
+
+    //display list of products 
+    public void dispProductbyCategory();
     
     //search product by name
     public void searchProduct();

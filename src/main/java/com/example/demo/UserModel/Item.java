@@ -2,9 +2,13 @@ package com.example.demo.UserModel;
 
 public class Item{
     protected String Itemname, Category; 
-    protected float buyingPrice; 
+    protected double buyingPrice; 
 
-    public Item(String ItemN, String Ctgy, Float buyingP){
+    public Item(){
+
+    }
+    
+    public Item(String ItemN, String Ctgy, double buyingP){
         this.Itemname = ItemN; 
         this.Category = Ctgy; 
         this.buyingPrice = buyingP; 

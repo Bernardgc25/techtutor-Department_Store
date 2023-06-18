@@ -8,27 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class UserDAOimplement implements UserDAO{
     //user input 
     String firstName, lastName; 
     char[] userName, useremail, password;
 
-    char letter = '\0'; 
-    int t_id = 0;
-    int del_tid = 0;
-    int upd_tid = 0;
-
-    //test input
-    String testfirstN, testlastN; 
-    char[] testuserN, testuseremail, testpwd;
-
     ///Admin 
     public List<Admin> Adminlist = new ArrayList<Admin>(1);
     public List<Customer> Customerlist = new ArrayList<Customer>();
-    
-      //list of visitors 
-    //public List<Visitor> visitors_list = new ArrayList<Visitor>();;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -102,7 +89,7 @@ public class UserDAOimplement implements UserDAO{
 
             System.out.print("Enter Email: ");
             lastName = scanner.nextLine();
-            cu.setEmail(testuseremail);
+            cu.setEmail(useremail);
             
             System.out.print("Enter userName: ");
             userName = scanner.next().toCharArray();
@@ -119,12 +106,12 @@ public class UserDAOimplement implements UserDAO{
 
             System.out.print("\033[H\033[2J");  
 		    System.out.flush();
-           
+
             //display info
             System.out.println("you have succesfully register a customer account");
             System.out.println("\n");
         }
-         
+    
 
 
     }
