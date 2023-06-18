@@ -18,12 +18,10 @@ import javax.swing.RowFilter.Entry;
 public class ProdfuncDAOimplement implements ProdfuncDAO{
 
     HashMap<Integer, Product> listOfproduct = new HashMap<>();
-
     Scanner scanner = new Scanner(System.in);
-
     Product newproduct = new Product();
-
     char choice = '\0';
+    Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
 
     @Override
     public void addProduct() {
@@ -75,45 +73,48 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     public void removeProduct() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'removeProduct'");
-        int productId; 
-        String productName; 
-
 
         boolean remove_prod = true; 
-
+        //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
+        
         while(remove_prod){
             if(!listOfproduct.isEmpty()){
+
                 //display products           
                 System.out.println("list of products:"); 
-                listOfproduct.entrySet().forEach( entry -> {
-                System.out.println( entry.getKey() + " => " + entry.getValue() );
-                });
+                for(Map.Entry<Integer, Product> p:pset)
+                {
+                    //System.out.println(":Key is "+p.getKey());
+                    Product pobj=p.getValue();
+                    System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
+                        + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+                }
+                    
+                // listOfproduct.entrySet().forEach( entry -> {
+                // System.out.println( entry.getKey() + " => " + entry.getValue() );
+                // });
 
                 System.out.println("");
                 System.out.println("");
                 
-                //remove item by key and product name
-                System.out.print("Enter a product to remove: ");
-                System.out.print("Enter Product Id: ");
-                productId = scanner.nextInt();
-                newproduct.setProductId(productId);
-
-                System.out.print("Enter Product Name: ");
-                productName = scanner.nextLine();
-                newproduct.setProductName(productName);
-                
-                listOfproduct.remove(productId, productName);
+                //remove item by productID
+                System.out.print("Enter Product Id to remove: ");
+                int pdelete = scanner.nextInt();
+	            Product premoobj = listOfproduct.get(pdelete);
 
                 //clear screen
                 System.out.print("\033[H\033[2J");  
                 System.out.flush();   
 
-                //display products           
                 System.out.println("list of products:"); 
-                listOfproduct.entrySet().forEach( entry -> {
-                System.out.println( entry.getKey() + " => " + entry.getValue() );
-                });
-
+                for(Map.Entry<Integer, Product> p:pset)
+                {
+                    //System.out.println(":Key is "+p.getKey());
+                    Product pobj=p.getValue();
+                    System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
+                        + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+                }
+                
                 System.out.println("");
                 System.out.println("delete more task?");
                 System.out.println("(Y) Yes");
@@ -151,7 +152,9 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     @Override
     public void dispProduct() {
         // TODO Auto-generated method stub
-        //hrow new UnsupportedOperationException("Unimplemented method 'dispProduct'");
+        //throw new UnsupportedOperationException("Unimplemented method 'dispProduct'");
+        //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
+    
         //clear screen
         System.out.print("\033[H\033[2J");  
         System.out.flush();
@@ -160,10 +163,15 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                 
         }
         else{
+            //display
             System.out.println("list of products:"); 
-            listOfproduct.entrySet().forEach( entry -> {
-            System.out.println( entry.getKey() + " => " + entry.getValue() );
-            });
+            for(Map.Entry<Integer, Product> p:pset)
+                {
+                //System.out.println(":Key is "+p.getKey());
+                Product pobj=p.getValue();
+                System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
+                + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+                }
         
         //return to option menu
         System.out.println("");
@@ -182,20 +190,22 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     public void dispProductbyCategory() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
-    	//Set<Map.Entry<Integer, Product>> pset=prdmap.entrySet();
-		
-        for(Map.Entry<Integer, Product> entry:listOfproduct.entrySet())
-		{
-			System.out.println(":Key is "+entry.getKey());
-			Product pobj = entry.getValue();
-			System.out.println("Category name is "+pobj.getCategory());
-		}
-		
+    	//Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
+        
+        //display
+        System.out.println("Display by Category products:"); 
+        for(Map.Entry<Integer, Product> p:pset){
+            //System.out.println(":Key is "+p.getKey());
+            Product pobj=p.getValue();
+            System.out.println("Category: " +pobj.getCategory() + "Product Id:" +pobj.getProductName() + "Product Name: " 
+            +pobj.getProductName() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+        }
+        
     }
 
     @Override
     public void searchbyProductId() {
-        // TODO Auto-generated method stub
+        //TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'searchProduct'");
 
         Object prodId; 
@@ -212,16 +222,19 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
             //search by productId
             //newproduct = listOfproduct.get(productId);
 
-
             if (listOfproduct.containsValue(prodId)){
                 System.out.println("productId exist...");
                 System.out.println("");
 
-                //display tasks
+                //display 
                 System.out.println("list of products:"); 
-                listOfproduct.entrySet().forEach( entry -> {
-                System.out.println( entry.getKey() + " => " + entry.getValue() );
-                });
+                for(Map.Entry<Integer, Product> p:pset)
+                {
+                //System.out.println(":Key is "+p.getKey());
+                Product pobj=p.getValue();
+                System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
+                + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+                }
                 
                 System.out.println("");
                 System.out.println("(S) search for productId");
@@ -259,7 +272,6 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'searchbyProductCategory'");
 
-
         Object pName; 
         boolean searchnotDone = true;
         
@@ -271,17 +283,20 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
             //productId = scanner.nextInt();
             pName = scanner.nextLine();
             
-            //search by productId
+            //search by productName
             if (listOfproduct.containsValue(pName)){
                 System.out.println("product Name exist...");
                 System.out.println("");
 
-                //display tasks
+                //display 
                 System.out.println("list of products:"); 
-                listOfproduct.entrySet().forEach( entry -> {
-                System.out.println( entry.getKey() + " => " + entry.getValue() );
-                });
-                
+                for(Map.Entry<Integer, Product> p:pset){
+                //System.out.println(":Key is "+p.getKey());
+                Product pobj=p.getValue();
+                System.out.println("Product Name: " +pobj.getProductName() + "Product Id:" +pobj.getProductId() +"Quantity: " 
+                +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
+                }
+
                 System.out.println("");
                 System.out.println("(S) search for a product Name");
                 System.out.println("(M) go back to menu: ");
@@ -311,14 +326,14 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                 }
             }
         }     
-
-
     }
 
     @Override
     public void dispExpenses() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dispExpenses'");
+        //throw new UnsupportedOperationException("Unimplemented method 'dispExpenses'");
+    
+    
     }
 
     @Override
