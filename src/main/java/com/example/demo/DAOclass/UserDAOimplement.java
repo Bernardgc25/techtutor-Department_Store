@@ -171,6 +171,9 @@ public class UserDAOimplement implements UserDAO{
         */
 
 
+        //code here
+        //invoke admin option (option Menu.java) 
+
 
     }
 
@@ -200,6 +203,11 @@ public class UserDAOimplement implements UserDAO{
         //get record from database
         System.out.println("verifying record from Customer database");  
         System.out.println("\n");  
+
+
+
+        //code here
+        //invoke customer option (option Menu.java) 
 		
     }
     
