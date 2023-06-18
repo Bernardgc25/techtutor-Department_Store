@@ -124,6 +124,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                         remove_prod = true; 
                     }            
             }
+            //return to option menu
             else{
                 //product list is empty 
                 System.out.println("list is empty!! ");
@@ -141,7 +142,31 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     @Override
     public void dispProduct() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dispProduct'");
+        //hrow new UnsupportedOperationException("Unimplemented method 'dispProduct'");
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+        if(new_product.isEmpty()){
+            System.out.print("list is empty!! ");
+                
+        }
+        else{
+            System.out.println("list of products:"); 
+            new_product.entrySet().forEach( entry -> {
+            System.out.println( entry.getKey() + " => " + entry.getValue() );
+            });
+        
+        //return to option menu
+        System.out.println("");
+        System.out.print("(M) go back to menu: ");
+        choice = scanner.next().charAt(0);
+
+        System.out.println("");
+        if(choice == 'm' || choice == 'M'){
+            return; 
+        }    
+
+        }    
     }
 
     @Override
