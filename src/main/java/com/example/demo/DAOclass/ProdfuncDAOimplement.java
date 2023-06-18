@@ -73,7 +73,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
         boolean remove_prod = true; 
 
         while(remove_prod){
-             if(!new_product.isEmpty()){
+            if(!new_product.isEmpty()){
                 //display products           
                 System.out.println("list of products:"); 
                 new_product.entrySet().forEach( entry -> {
@@ -166,8 +166,8 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
             return; 
         }    
 
-        }    
-    }
+    }    
+}
 
     @Override
     public void dispProductbyCategory() {
