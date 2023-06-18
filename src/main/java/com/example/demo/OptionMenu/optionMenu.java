@@ -12,26 +12,27 @@ public class optionMenu {
     }
 
     Scanner scanner = new Scanner(System.in);
+    StoreInformationDAOimplement sm = new StoreInformationDAOimplement(); 
 
     //console menu
     public int adminMenu(int opt){
-        //String[] options;
 
+        //clear screen
         System.out.print("\033[H\033[2J");  
 		System.out.flush();
 
         System.out.print("Choose your option : ");
 
-        String[] options = {"1- Search a product by productID",
-                            "2- Search a product by productName",
-                            "3- Display all products",
-                            "4- Display products by Category",
-                            "5- Display total Expenses",
-                            "6- Display total Profits",
-                            "7- Exit",
+        String[] options = {"1 - Search a product by productID",
+                            "2 - Search a product by productName",
+                            "3 - Display all products",
+                            "4 - Display products by Category",
+                            "5 - Display total Expenses",
+                            "6 - Display total Profits",
+                            "7 - Exit",
                             
                         };  
-        StoreInformationDAOimplement sm = new StoreInformationDAOimplement(); 
+        
         int option = 1;
         while (option != 7){
             printMenu(options);
@@ -71,16 +72,61 @@ public class optionMenu {
         return opt;    
     }
 
-    public char customerMenu(char choice){
-        return choice;
+    public int customerMenu(int opt){
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+		System.out.flush();
 
+        System.out.print("Choose your option : ");
+
+        String[] options = {"1 - Search a product by productID",
+                            "2 - Search a product by productName",
+                            "3 - Filter by price",
+                            "4 - Filter by Category",
+                            "5 - Exit",
+                            
+                        };  
+        
+        int option = 1;
+        while (option != 7){
+            printMenu(options);
+            try {
+                option = scanner.nextInt();
+                switch (option){
+                    case 1: 
+                        sm.searchbyProductId();
+                        break;
+                    case 2:  
+                        sm.searchbyProductName();
+                        break;
+                    case 3:
+                        sm.dispsbyPrice();
+                        break;
+                    case 4:
+                        sm.dispProductbyCategory(); 
+                        break;
+                    case 5: 
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        break;
+                }
+            }
+            catch (Exception ex){
+                System.out.println("Please enter an integer value between 1 and " + options.length);
+                scanner.next();
+            }
+        }
+
+        return opt;
     }
 
-        private void printMenu(String[] options) {
+    private void printMenu(String[] options) {
+    
+            for (String option : options){
+                System.out.println(option);
+            }
     }
 
 
-
-    }
-
+}
 

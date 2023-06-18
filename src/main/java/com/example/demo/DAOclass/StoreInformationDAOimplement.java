@@ -18,12 +18,18 @@ import javax.swing.RowFilter.Entry;
 
 public class StoreInformationDAOimplement implements StoreInformationDAO{
 
+    
     HashMap<Integer, Product> listOfproduct = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
     Product newproduct = new Product();
     char choice = '\0';
     Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
     ArrayList<Double> expenses = new ArrayList<Double>();
+
+    //constructor
+    public StoreInformationDAOimplement(){
+        
+    }
 
     @Override
     public void addProduct() {
@@ -136,7 +142,7 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
     }
 
     @Override
-    public void dispProduct() {
+    public void dispsallProduct() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'dispProduct'");
         //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
@@ -178,7 +184,7 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
         //throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
     	//Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
         
-        //display
+        //display by category
         System.out.println("Display by Category products:"); 
         for(Map.Entry<Integer, Product> p:pset){
             //System.out.println(":Key is "+p.getKey());
@@ -187,6 +193,23 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
             +pobj.getProductName() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
         }
         
+    }
+
+    @Override
+    public void dispsbyPrice() {
+        // TODO Auto-generated method stub
+        //throw new UnsupportedOperationException("Unimplemented method 'dispsbyPrice'");
+        //display by category
+        System.out.println("Display by Category products:"); 
+        for(Map.Entry<Integer, Product> p:pset){
+            //System.out.println(":Key is "+p.getKey());
+            Product pobj=p.getValue();
+            System.out.println("Price: " +pobj.getSellingPrice() + "Product Id:" +pobj.getProductName() + "Product Name: " 
+            +pobj.getProductName() + "Category: " +pobj.getCategory() +  "Quantity: " +pobj.getAvailableQuantity());
+        }    
+    
+    
+    
     }
 
     @Override
@@ -333,5 +356,7 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dispProfit'");
     }
+
+   
 
 }

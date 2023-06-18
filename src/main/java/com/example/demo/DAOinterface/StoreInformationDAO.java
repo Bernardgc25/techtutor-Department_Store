@@ -1,6 +1,7 @@
 package com.example.demo.DAOinterface;
 
 public interface StoreInformationDAO {
+
     
     //add new product by Admin
     public void addProduct();
@@ -9,10 +10,13 @@ public interface StoreInformationDAO {
     public void removeProduct();
 
     //display list of products 
-    public void dispProduct();
+    public void dispsallProduct();
 
     //display list of products 
     public void dispProductbyCategory();
+
+    //display by price
+    public void dispsbyPrice();
     
     //search product by name
     public void searchbyProductId();
