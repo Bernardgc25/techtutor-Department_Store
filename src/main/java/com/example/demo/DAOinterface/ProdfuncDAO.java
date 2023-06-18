@@ -21,7 +21,7 @@ public interface ProdfuncDAO {
     public void searchbyProductId();
 
     //search product by name
-    public void searchbyProductCategory();
+    public void searchbyProductName();
 
     //display total expenses 
     public void dispExpenses();

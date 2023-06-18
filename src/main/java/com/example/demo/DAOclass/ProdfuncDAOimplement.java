@@ -7,7 +7,9 @@ import com.example.demo.UserModel.Item;
 import com.example.demo.UserModel.Product;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.swing.RowFilter.Entry;
 
@@ -15,48 +17,52 @@ import javax.swing.RowFilter.Entry;
 
 public class ProdfuncDAOimplement implements ProdfuncDAO{
 
-    HashMap<Product, String> listOfproduct = new HashMap<>();
+    HashMap<Integer, Product> listOfproduct = new HashMap<>();
 
     Scanner scanner = new Scanner(System.in);
 
     Product newproduct = new Product();
 
-    int productId, availableQuantity; 
-    String productName, prodCategory; 
-    float sellingPrice;
     char choice = '\0';
 
     @Override
     public void addProduct() {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'addProduct'");
+    /* 
+    int productId; 
+    int availableQuantity; 
+    String productName, productCategory; 
+    float sellingPrice;
+    */
+    
         System.out.print("\033[H\033[2J");  
 		System.out.flush();    
             
         //prompt product information
         System.out.print("Enter Product Id: ");
-        productId = scanner.nextInt();
-        newproduct.setProductId(productId);
+        //productId = scanner.nextInt();
+        newproduct.setProductId(scanner.nextInt());
 
         System.out.print("Enter Product Name: ");
-        productName = scanner.nextLine();
-        newproduct.setProductName(productName);
+        //productName = scanner.nextLine();
+        newproduct.setProductName(scanner.nextLine());
 
         System.out.print("Enter Category: ");
-        prodCategory = scanner.nextLine();
-        newproduct.setCategory(prodCategory);
+        //productCategory = scanner.nextLine();
+        newproduct.setCategory(scanner.nextLine());
 
         System.out.print("Enter Quantity: ");
-        productId = scanner.nextInt();
-        newproduct.setAvailableQuantity(availableQuantity);
+        //availableQuantity = scanner.nextInt();
+        newproduct.setAvailableQuantity(scanner.nextInt());
 
         System.out.print("Enter Price: ");
-        sellingPrice = scanner.nextFloat();
-        newproduct.setBuyingPrice(sellingPrice);
+        //sellingPrice = scanner.nextFloat();
+        newproduct.setBuyingPrice(scanner.nextDouble());
         
         //add product to hashmap
         //listOfproduct.put(newproduct.getProductName(), newproduct);
-        listOfproduct.put(newproduct, newproduct.getProductName());
+        listOfproduct.put(newproduct.getProductId(), newproduct);
     }
 
     @Override
@@ -69,6 +75,9 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     public void removeProduct() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'removeProduct'");
+        int productId; 
+        String productName; 
+
 
         boolean remove_prod = true; 
 
@@ -172,7 +181,16 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     @Override
     public void dispProductbyCategory() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
+        //throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
+    	//Set<Map.Entry<Integer, Product>> pset=prdmap.entrySet();
+		
+        for(Map.Entry<Integer, Product> entry:listOfproduct.entrySet())
+		{
+			System.out.println(":Key is "+entry.getKey());
+			Product pobj = entry.getValue();
+			System.out.println("Category name is "+pobj.getCategory());
+		}
+		
     }
 
     @Override
@@ -192,6 +210,9 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
             prodId = scanner.nextInt();
             
             //search by productId
+            //newproduct = listOfproduct.get(productId);
+
+
             if (listOfproduct.containsValue(prodId)){
                 System.out.println("productId exist...");
                 System.out.println("");
@@ -234,25 +255,25 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     }
 
     @Override
-    public void searchbyProductCategory() {
+    public void searchbyProductName() {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'searchbyProductCategory'");
 
 
-        Object prodCategory; 
+        Object pName; 
         boolean searchnotDone = true;
         
         while(searchnotDone){
             System.out.print("\033[H\033[2J");  
             System.out.flush();
 
-            System.out.print("Enter productId to search: ");
+            System.out.print("Enter product Name to search: ");
             //productId = scanner.nextInt();
-            prodCategory = scanner.nextLine();
+            pName = scanner.nextLine();
             
             //search by productId
-            if (listOfproduct.containsValue(prodCategory)){
-                System.out.println("productId exist...");
+            if (listOfproduct.containsValue(pName)){
+                System.out.println("product Name exist...");
                 System.out.println("");
 
                 //display tasks
@@ -262,7 +283,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                 });
                 
                 System.out.println("");
-                System.out.println("(S) search for Category");
+                System.out.println("(S) search for a product Name");
                 System.out.println("(M) go back to menu: ");
                 System.out.println("");
                 System.out.print("Enter a choice: ");
@@ -275,9 +296,9 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
                 }
             } 
             else {
-                System.out.println("Category do not exist!!!");
+                System.out.println("product Name do not exist!!!");
                 System.out.println("");
-                System.out.println("(S) search for Category");
+                System.out.println("(S) search for product Name");
                 System.out.println("(M) go back to menu: ");
                 System.out.println("");
                 System.out.print("Enter a choice: ");
