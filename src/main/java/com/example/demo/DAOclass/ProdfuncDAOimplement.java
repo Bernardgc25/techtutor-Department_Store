@@ -9,6 +9,8 @@ import com.example.demo.UserModel.Product;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.swing.RowFilter.Entry;
+
 
 
 public class ProdfuncDAOimplement implements ProdfuncDAO{
@@ -22,7 +24,7 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     int productId, availableQuantity; 
     String productName, prodCategory; 
     float sellingPrice;
-
+    char choice = '\0';
 
     @Override
     public void addProduct() {
@@ -66,7 +68,74 @@ public class ProdfuncDAOimplement implements ProdfuncDAO{
     @Override
     public void removeProduct() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeProduct'");
+        //throw new UnsupportedOperationException("Unimplemented method 'removeProduct'");
+
+        boolean remove_prod = true; 
+
+        while(remove_prod){
+             if(!new_product.isEmpty()){
+                //display products           
+                System.out.println("list of products:"); 
+                new_product.entrySet().forEach( entry -> {
+                System.out.println( entry.getKey() + " => " + entry.getValue() );
+                });
+
+                System.out.println("");
+                System.out.println("");
+                
+                //remove item by key and product name
+                System.out.print("Enter a product to remove: ");
+                System.out.print("Enter Product Id: ");
+                productId = scanner.nextInt();
+                p.setProductId(productId);
+
+                System.out.print("Enter Product Name: ");
+                productName = scanner.nextLine();
+                p.setProductName(productName);
+                
+                new_product.remove(productId, productName);
+
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();   
+
+                //display products           
+                System.out.println("list of products:"); 
+                new_product.entrySet().forEach( entry -> {
+                System.out.println( entry.getKey() + " => " + entry.getValue() );
+                });
+
+                System.out.println("");
+                System.out.println("delete more task?");
+                System.out.println("(Y) Yes");
+                System.out.println("(N) No");
+                System.out.println("");
+                System.out.print("Enter a choice: ");
+                    
+                choice = scanner.next().charAt(0);
+
+                    //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();  
+                    if(choice == 'n' || choice == 'N'){
+                        remove_prod = false;
+                    }
+                    else if(choice == 'y' || choice == 'Y'){
+                        remove_prod = true; 
+                    }            
+            }
+            else{
+                //product list is empty 
+                System.out.println("list is empty!! ");
+                System.out.println("(M) go back to menu: ");
+                System.out.println("");
+                System.out.print("Enter a choice: ");
+                    choice = scanner.next().charAt(0);
+                        if(choice == 'm' || choice == 'M'){
+                            remove_prod = false;
+                        }
+            }
+        }
     }
 
     @Override
