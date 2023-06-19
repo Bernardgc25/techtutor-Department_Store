@@ -62,6 +62,7 @@ public class UserDAOimplement implements UserDAO{
                         scanner.nextLine(); 
                         System.out.print("Enter firstName: ");
                         firstName = scanner.nextLine();
+                        
                         ad.setFirstname(firstName);
                         //scanner.nextLine(); 
 
