@@ -6,6 +6,7 @@ import com.example.demo.UserModel.Admin;
 import com.example.demo.UserModel.Customer;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,106 +22,142 @@ public class UserDAOimplement implements UserDAO{
     Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void register(int opt) {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'register'");
-        System.out.println("1 - register as a Admin");
-        System.out.println("2 - register as a Customer");
-
-        System.out.println("");
-        System.out.print("Enter your option: ");
-        //System.out.print("Are you a client(c) or visitor(v) ? ");
-        opt = scanner.nextInt();
-
-        System.out.print("\033[H\033[2J");  
-		System.out.flush();  
-
-        //register an Admin account
-        if (opt == 1) {
-            Admin ad = new Admin();
-
-            //save input into variable including spaces 
-            scanner.nextLine(); 
-            System.out.print("Enter firstName: ");
-            firstName = scanner.nextLine();
-            ad.setFirstname(firstName);
-            //scanner.nextLine(); 
-
-            System.out.print("Enter lastName: ");
-            lastName = scanner.nextLine();
-            ad.setLastname(lastName);
-
-            System.out.print("Enter Email: ");
-            lastName = scanner.nextLine();
-            ad.setEmail(useremail);
-            
-            System.out.print("Enter userName: ");
-            userName = scanner.next().toCharArray();
-            ad.setUsername(userName);
-            scanner.nextLine();
-            
-            System.out.print("Enter password: ");
-            password = scanner.next().toCharArray();
-            ad.setPassword(password);
-            scanner.nextLine(); 
-
-            //add to adminlist
-            Adminlist.add(ad);
-
+    public void register_menu(int opt) {
+        boolean notDone = true;
+        while(notDone){
+            //clearscreen
             System.out.print("\033[H\033[2J");  
-		    System.out.flush();
-            //display info
-            System.out.println("you have succesfully register an Admin account");
-            System.out.println("\n");
-        }
-        //register a customer  account
-        else if(opt == 2){
-            Customer cu = new Customer();
-
-            //save input into variable including spaces 
-            scanner.nextLine(); 
-            System.out.print("Enter firstName: ");
-            firstName = scanner.nextLine();
-            cu.setFirstname(firstName);
-            //scanner.nextLine(); 
-
-            System.out.print("Enter lastName: ");
-            lastName = scanner.nextLine();
-            cu.setLastname(lastName);
-
-            System.out.print("Enter Email: ");
-            lastName = scanner.nextLine();
-            cu.setEmail(useremail);
+            System.out.flush();  
             
-            System.out.print("Enter userName: ");
-            userName = scanner.next().toCharArray();
-            cu.setUsername(userName);
-            scanner.nextLine();
+            System.out.println("UserDA0implement.java");  
+            System.out.println("Register Menu:");
+            System.out.println("");
+            System.out.println("0 - Exit");
+            System.out.println("1 - register as a Admin");
+            System.out.println("2 - register as a Customer");
+
+            System.out.println("");
+            System.out.print("Enter your option: ");
+
+            //try and catch here
+            try {
+                opt = scanner.nextInt();
+
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();  
+
+                //register an Admin account
+                switch(opt){
+                    //exit menu
+                    case 0:
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        notDone = false; 
+                    break; 
+                    //register as Admin 
+                    case 1:
+                        Admin ad = new Admin();
+
+                        //save input into variable including spaces 
+                        scanner.nextLine(); 
+                        System.out.print("Enter firstName: ");
+                        firstName = scanner.nextLine();
+                        ad.setFirstname(firstName);
+                        //scanner.nextLine(); 
+
+                        System.out.print("Enter lastName: ");
+                        lastName = scanner.nextLine();
+                        ad.setLastname(lastName);
+
+                        System.out.print("Enter Email: ");
+                        lastName = scanner.nextLine();
+                        ad.setEmail(useremail);
+                        
+                        System.out.print("Enter userName: ");
+                        userName = scanner.next().toCharArray();
+                        ad.setUsername(userName);
+                        scanner.nextLine();
+                        
+                        System.out.print("Enter password: ");
+                        password = scanner.next().toCharArray();
+                        ad.setPassword(password);
+                        scanner.nextLine(); 
+
+                        //add to adminlist
+                        Adminlist.add(ad);
+
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        //display info
+                        System.out.println("you have succesfully register an Admin account");
+                        System.out.println("\n"); 
+                        //save account to database      
+                    break;
+                
+                    //register as customer
+                    case 2:
+                        Customer cu = new Customer();
+
+                        //save input into variable including spaces 
+                        scanner.nextLine(); 
+                        System.out.print("Enter firstName: ");
+                        firstName = scanner.nextLine();
+                        cu.setFirstname(firstName);
+                        //scanner.nextLine(); 
+
+                        System.out.print("Enter lastName: ");
+                        lastName = scanner.nextLine();
+                        cu.setLastname(lastName);
+
+                        System.out.print("Enter Email: ");
+                        lastName = scanner.nextLine();
+                        cu.setEmail(useremail);
+                        
+                        System.out.print("Enter userName: ");
+                        userName = scanner.next().toCharArray();
+                        cu.setUsername(userName);
+                        scanner.nextLine();
+                        
+                        System.out.print("Enter password: ");
+                        password = scanner.next().toCharArray();
+                        cu.setPassword(password);
+                        scanner.nextLine(); 
+
+                        //add to adminlist
+                        Customerlist.add(cu);
+
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+
+                        //display info
+                        System.out.println("you have succesfully register a customer account");
+                        System.out.println("\n");
+
+                        //save account to database
+                    break;
+                }                
+            } 
+            catch (InputMismatchException e) {
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                
+                System.out.println("Invalid input, integer only");
+                System.out.println("press any character to continue");
             
-            System.out.print("Enter password: ");
-            password = scanner.next().toCharArray();
-            cu.setPassword(password);
-            scanner.nextLine(); 
+                char choice = scanner.next().charAt(0);
 
-            //add to adminlist
-            Customerlist.add(cu);
-
-            System.out.print("\033[H\033[2J");  
-		    System.out.flush();
-
-            //display info
-            System.out.println("you have succesfully register a customer account");
-            System.out.println("\n");
+                choice = scanner.next().charAt(0);
+                if((choice == 'c') || (choice == 'C')){
+                    System.out.println("Back to Option Menu");
+                    notDone = true; 
+                } 
+            }
         }
-    
-
-
     }
 
     @Override
     public void Admin_login() {
-        //TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'Admin_login'");
         //validate admin credentials 
         optionMenu adMenu = new optionMenu(); 
         

@@ -19,7 +19,7 @@ public class Register {
             System.out.flush();
             
             System.out.println("Register.java");  
-            System.out.println("Register/Login Menu:");
+            System.out.println("Register or Login Menu:");
             System.out.println("");
             System.out.println("0 - Exit");
             System.out.println("1 - Register");
@@ -42,7 +42,7 @@ public class Register {
                     notDone = false; 
                     break; 
                 case 1:
-                    usr_register.register(opt);
+                    usr_register.register_menu(opt);
                     break;
                 case 2:
                     usr_login.login_menu(opt);
