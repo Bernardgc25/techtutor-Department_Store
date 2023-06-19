@@ -25,7 +25,7 @@ public class optionMenu {
             System.out.flush();
 
             //System.out.println("Choose your option: ");
-            System.out.println("Option Menu");
+            System.out.println("User Option Menu");
             System.out.println("0 - Exit");
             System.out.println("1 - Search a product by productID");
             System.out.println("2 - Search a product by productName");  
