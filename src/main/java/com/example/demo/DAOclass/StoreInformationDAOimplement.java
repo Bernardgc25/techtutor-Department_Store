@@ -8,6 +8,7 @@ import com.example.demo.UserModel.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -223,7 +224,6 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
     @Override
     public void searchbyProductId() {
 
-        Object prodId; 
         boolean searchnotDone = true;
         
         while(searchnotDone){
@@ -233,29 +233,42 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
 
             System.out.print("Enter productId to search: ");
             //productId = scanner.nextInt();
-            prodId = scanner.nextInt();
             
-            //search by productId
-            //newproduct = listOfproduct.get(productId);
-
-            if (listOfproduct.containsValue(prodId)){
-                System.out.println("productId exist...");
-                System.out.println("");
-
-                //display 
-                System.out.println("list of products:"); 
-                for(Map.Entry<Integer, Product> p:pset)
-                {
-                //System.out.println(":Key is "+p.getKey());
-                Product pobj=p.getValue();
-                System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
-                + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
-                }
+            
+            try {
+                Object prodId = scanner.nextInt();
                 
-            } 
-            else {
-                System.out.println("productId do not exist!!!");
+                //search by productId
+                //newproduct = listOfproduct.get(productId);
+
+                if (listOfproduct.containsValue(prodId)){
+                    System.out.println("productId exist...");
+                    System.out.println("");
+
+                    //display 
+                    System.out.println("list of products:"); 
+                    for(Map.Entry<Integer, Product> p:pset)
+                    {
+                    //System.out.println(":Key is "+p.getKey());
+                    Product pobj=p.getValue();
+                    System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
+                    + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+                    }
+                    
+                } 
+                else {
+                    System.out.println("productId do not exist!!!");
+                
+                }
+
+            } catch (InputMismatchException e) {
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                
+                System.out.println("Invalid input, integer only");
             }
+                //prompt user to search again
                 System.out.println("");
                 System.out.println("(S) search for productId");
                 System.out.println("(M) go back to menu: ");
