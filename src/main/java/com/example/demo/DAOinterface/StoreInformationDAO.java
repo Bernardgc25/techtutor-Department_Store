@@ -25,10 +25,10 @@ public interface StoreInformationDAO {
     public void searchbyProductName();
 
     //display total expenses 
-    public double dispExpenses();
+    public void dispExpenses();
 
     //display total profit 
-    public double dispProfit();
+    public void dispProfit();
 
 
 }

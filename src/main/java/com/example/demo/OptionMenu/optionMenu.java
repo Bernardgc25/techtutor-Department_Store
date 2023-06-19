@@ -21,111 +21,59 @@ public class optionMenu {
         System.out.print("\033[H\033[2J");  
 		System.out.flush();
 
-        System.out.print("Choose your option : ");
-
-        String[] options = {"1 - Search a product by productID",
-                            "2 - Search a product by productName",
-                            "3 - Display all products",
-                            "4 - Display products by Category",
-                            "5 - Display total Expenses",
-                            "6 - Display total Profits",
-                            "7 - Exit",
-                            
-                        };  
+        //System.out.println("Choose your option: ");
+        System.out.println("Menu");
+        System.out.println("0 - Exit");
+        System.out.println("1 - Search a product by productID");
+        System.out.println("2 - Search a product by productName");  
+        System.out.println("3 - Display all products");
+        System.out.println("4 - Display products by Category");
+        System.out.println("5 - Display total Expenses");
+        System.out.println("6 - Display total Profits");
         
-        int option = 1;
-        while (option != 7){
-            printMenu(options);
-            try {
-                option = scanner.nextInt();
-                switch (option){
-                    case 1: 
-                        sm.searchbyProductId();
-                        break;
-                    case 2:  
-                        sm.searchbyProductName();
-                        break;
-                    case 3:
-                        sm.dispsallProduct();
-                        break;
-                    case 4:
-                        sm.dispProductbyCategory(); 
-                        break;
-                    case 5:
-                        sm.dispExpenses(); 
-                        break;
-                    case 6:
-                        sm.dispProfit(); 
-                        break;                    
-                    case 7: 
-                        System.out.print("\033[H\033[2J");  
-                        System.out.flush();
-                        break;
-                }
-            }
-            catch (Exception ex){
-                System.out.println("Please enter an integer value between 1 and " + options.length);
-                scanner.next();
-            }
-        }
+        
+        System.out.println("");
+        System.out.print("Enter a choice: ");
+        opt = scanner.nextInt();
+
+        switch (opt){
+            case 0: 
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                break; 
+            case 1: 
+                sm.searchbyProductId();
+                break;
+            case 2:  
+                sm.searchbyProductName();
+                break;
+            case 3:
+                sm.dispsallProduct();
+                break;
+            case 4:
+                sm.dispProductbyCategory(); 
+                break;
+            case 5:
+                sm.dispExpenses(); 
+                break;
+            case 6:
+                sm.dispProfit(); 
+                break;                    
+            }       
 
         return opt;    
     }
+
 
     public int customerMenu(int opt){
         //clear screen
         System.out.print("\033[H\033[2J");  
 		System.out.flush();
 
-        System.out.print("Choose your option : ");
-
-        String[] options = {"1 - Search a product by productID",
-                            "2 - Search a product by productName",
-                            "3 - Filter by price",
-                            "4 - Filter by Category",
-                            "5 - Exit",
-                            
-                        };  
-        
-        int option = 1;
-        while (option != 7){
-            printMenu(options);
-            try {
-                option = scanner.nextInt();
-                switch (option){
-                    case 1: 
-                        sm.searchbyProductId();
-                        break;
-                    case 2:  
-                        sm.searchbyProductName();
-                        break;
-                    case 3:
-                        sm.dispsbyPrice();
-                        break;
-                    case 4:
-                        sm.dispProductbyCategory(); 
-                        break;
-                    case 5: 
-                        System.out.print("\033[H\033[2J");  
-                        System.out.flush();
-                        break;
-                }
-            }
-            catch (Exception ex){
-                System.out.println("Please enter an integer value between 1 and " + options.length);
-                scanner.next();
-            }
-        }
-
+   
         return opt;
     }
 
-    private void printMenu(String[] options) {
-    
-            for (String option : options){
-                System.out.println(option);
-            }
-    }
 
 
 }

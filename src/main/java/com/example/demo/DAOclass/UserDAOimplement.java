@@ -1,6 +1,7 @@
 package com.example.demo.DAOclass;
 
 import com.example.demo.DAOinterface.UserDAO;
+import com.example.demo.OptionMenu.optionMenu;
 import com.example.demo.UserModel.Admin;
 import com.example.demo.UserModel.Customer;
 
@@ -121,7 +122,7 @@ public class UserDAOimplement implements UserDAO{
         //TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'Admin_login'");
         //validate admin credentials 
-        Admin ad = new Admin();
+        optionMenu adMenu = new optionMenu(); 
         
         System.out.print("Enter username: ");
         userName = scanner.next().toCharArray();
@@ -169,12 +170,22 @@ public class UserDAOimplement implements UserDAO{
         }
             
         */
-
+        int adMenu_Value; 
+        int opt = 0; 
 
         //code here
         //invoke admin option (option Menu.java) 
+        boolean notdone = true; 
+            while(notdone){
+            adMenu_Value =  adMenu.adminMenu(opt);
 
-
+                if (adMenu_Value == 0 ){
+                    notdone = false; 
+                }    
+                //clearscreen
+                System.out.print("\033[H\033[2J");  
+		        System.out.flush();          
+            }
     }
 
     @Override

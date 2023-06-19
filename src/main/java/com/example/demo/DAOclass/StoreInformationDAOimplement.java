@@ -33,10 +33,6 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
 
     @Override
     public void addProduct() {
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'addProduct'");
-    
-
         System.out.print("\033[H\033[2J");  
 		System.out.flush();    
             
@@ -67,9 +63,6 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
 
     @Override
     public void removeProduct() {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'removeProduct'");
-
         boolean remove_prod = true; 
         //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
         
@@ -143,16 +136,14 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
 
     @Override
     public void dispsallProduct() {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'dispProduct'");
         //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
     
         //clear screen
         System.out.print("\033[H\033[2J");  
         System.out.flush();
+
         if(listOfproduct.isEmpty()){
-            System.out.print("list is empty!! ");
-                
+            System.out.print("list is empty!! ");        
         }
         else{
             //display
@@ -164,41 +155,58 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
                 + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
                 }
+        }
+            //return to option menu
+            System.out.println("");
+            System.out.print("(M) go back to menu: ");
+            choice = scanner.next().charAt(0);
+
+            System.out.println("");
+            if(choice == 'm' || choice == 'M'){
+                return; 
+            }    
+
         
-        //return to option menu
-        System.out.println("");
-        System.out.print("(M) go back to menu: ");
-        choice = scanner.next().charAt(0);
-
-        System.out.println("");
-        if(choice == 'm' || choice == 'M'){
-            return; 
-        }    
-
-    }    
 }
 
     @Override
     public void dispProductbyCategory() {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'dispProductbyCategory'");
     	//Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
         
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+    
         //display by category
-        System.out.println("Display by Category products:"); 
-        for(Map.Entry<Integer, Product> p:pset){
+        System.out.println("Display products by Category:"); 
+    
+        if(listOfproduct.isEmpty()){
+            System.out.println("list is empty!! ");
+        }
+        else{
+        
+            for(Map.Entry<Integer, Product> p:pset){
             //System.out.println(":Key is "+p.getKey());
             Product pobj=p.getValue();
             System.out.println("Category: " +pobj.getCategory() + "Product Id:" +pobj.getProductName() + "Product Name: " 
             +pobj.getProductName() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+            }
+        
         }
         
+            //return to option menu
+            System.out.println("");
+            System.out.print("(M) go back to menu: ");
+            choice = scanner.next().charAt(0);
+
+            System.out.println("");
+            if(choice == 'm' || choice == 'M'){
+                return; 
+            }    
     }
 
     @Override
     public void dispsbyPrice() {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'dispsbyPrice'");
         //display by category
         System.out.println("Display by Category products:"); 
         for(Map.Entry<Integer, Product> p:pset){
@@ -214,13 +222,12 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
 
     @Override
     public void searchbyProductId() {
-        //TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'searchProduct'");
 
         Object prodId; 
         boolean searchnotDone = true;
         
         while(searchnotDone){
+            //clear screen
             System.out.print("\033[H\033[2J");  
             System.out.flush();
 
@@ -245,21 +252,10 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
                 }
                 
-                System.out.println("");
-                System.out.println("(S) search for productId");
-                System.out.println("(M) go back to menu: ");
-                System.out.println("");
-                System.out.print("Enter a choice: ");
-                choice = scanner.next().charAt(0);
-                if(choice == 'm' || choice == 'M'){
-                    searchnotDone = false; 
-                }
-                else if (choice == 's' || choice == 'S'){
-                    searchnotDone = true;
-                }
             } 
             else {
                 System.out.println("productId do not exist!!!");
+            }
                 System.out.println("");
                 System.out.println("(S) search for productId");
                 System.out.println("(M) go back to menu: ");
@@ -272,31 +268,32 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 else if (choice == 's' || choice == 'S'){
                     searchnotDone = true;
                 }
-            }
+            
         }     
     }
 
     @Override
     public void searchbyProductName() {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'searchbyProductCategory'");
 
         Object pName; 
         boolean searchnotDone = true;
         
         while(searchnotDone){
+            //clear screen
             System.out.print("\033[H\033[2J");  
             System.out.flush();
 
             System.out.print("Enter product Name to search: ");
             //productId = scanner.nextInt();
-            pName = scanner.nextLine();
+            pName = scanner.next();
             
+            System.out.print("");
             //search by productName
             if (listOfproduct.containsValue(pName)){
                 System.out.println("product Name exist...");
                 System.out.println("");
 
+                
                 //display 
                 System.out.println("list of products:"); 
                 for(Map.Entry<Integer, Product> p:pset){
@@ -305,22 +302,12 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 System.out.println("Product Name: " +pobj.getProductName() + "Product Id:" +pobj.getProductId() +"Quantity: " 
                 +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
                 }
-
-                System.out.println("");
-                System.out.println("(S) search for a product Name");
-                System.out.println("(M) go back to menu: ");
-                System.out.println("");
-                System.out.print("Enter a choice: ");
-                choice = scanner.next().charAt(0);
-                if(choice == 'm' || choice == 'M'){
-                    searchnotDone = false; 
-                }
-                else if (choice == 's' || choice == 'S'){
-                    searchnotDone = true;
-                }
-            } 
+            }
+             
             else {
                 System.out.println("product Name do not exist!!!");
+            } 
+            
                 System.out.println("");
                 System.out.println("(S) search for product Name");
                 System.out.println("(M) go back to menu: ");
@@ -333,30 +320,60 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 else if (choice == 's' || choice == 'S'){
                     searchnotDone = true;
                 }
-            }
+     
         }     
     }
 
     @Override
-    public double dispExpenses() {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'dispExpenses'");
-       
+    public void dispExpenses() {
+   
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+        
         //display total expenses 
         double sum = 0;
-        for(int i = 0; i < expenses.size(); i++)
-        sum += expenses.get(i);
+        for(int i = 0; i < expenses.size(); i++){
+            sum += expenses.get(i);
+        }
         
-        return sum;
+        System.out.println("Total Expenses: $" + sum);
     
+        //return to option menu
+        System.out.println("");
+        System.out.print("(M) go back to menu: ");
+        choice = scanner.next().charAt(0);
+
+        System.out.println("");
+        if(choice == 'm' || choice == 'M'){
+            return; 
+        }    
     }
 
     @Override
-    public double dispProfit() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dispProfit'");
+    public void dispProfit() {
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+        
+        //display total expenses 
+        double sum = 0;
+        for(int i = 0; i < expenses.size(); i++){
+            sum += expenses.get(i);
+        }
+        
+        System.out.println("Total Profit: $" + sum);
+    
+        //return to option menu
+        System.out.println("");
+        System.out.print("(M) go back to menu: ");
+        choice = scanner.next().charAt(0);
+
+        System.out.println("");
+        if(choice == 'm' || choice == 'M'){
+            return; 
+        }    
     }
 
-   
 
 }
