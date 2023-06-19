@@ -21,22 +21,22 @@ public class UserDAOimplement implements UserDAO{
     Scanner scanner = new Scanner(System.in);
 
     @Override
-    public void register(char choice) {
+    public void register(int opt) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'register'");
-        System.out.println("(A) register as a Admin");
-        System.out.println("(C) register as a Customer");
+        System.out.println("1 - register as a Admin");
+        System.out.println("2 - register as a Customer");
 
         System.out.println("");
         System.out.print("Enter your option: ");
         //System.out.print("Are you a client(c) or visitor(v) ? ");
-        choice = scanner.next().charAt(0);
+        opt = scanner.nextInt();
 
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
 
         //register an Admin account
-        if (choice == 'a' || choice == 'A') {
+        if (opt == 1) {
             Admin ad = new Admin();
 
             //save input into variable including spaces 
@@ -74,7 +74,7 @@ public class UserDAOimplement implements UserDAO{
             System.out.println("\n");
         }
         //register a customer  account
-        else if(choice == 'c' || choice == 'C'){
+        else if(opt == 2){
             Customer cu = new Customer();
 
             //save input into variable including spaces 

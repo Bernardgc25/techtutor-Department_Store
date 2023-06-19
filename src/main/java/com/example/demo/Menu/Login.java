@@ -1,5 +1,6 @@
 package com.example.demo.Menu;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.example.demo.DAOclass.UserDAOimplement;
@@ -9,36 +10,67 @@ public class Login { //System.out.println("");
 
     Scanner scanner = new Scanner(System.in);
     
-    public void login_menu(char letter) {
+    public void login_menu(int opt) {
         UserDAOimplement logIn = new UserDAOimplement(); 
-    
-        System.out.println("Log-in as:");
-        System.out.println("(A) Admin");
-        System.out.println("(C) Customer");
+        boolean notDone = true;
 
-        System.out.println("");
-        System.out.print("Enter a choice: ");
-        letter = scanner.next().charAt(0);
+        while(notDone){
+            //clearscreen
+            System.out.print("\033[H\033[2J");  
+            System.out.flush();  
 
-        System.out.print("\033[H\033[2J");  
-		System.out.flush();  
-        
-        switch (letter) {
-        //login as Admin 
-        case 'a':
-            logIn.Admin_login();
-            break;
-        case 'A':
-            logIn.Admin_login();
-            break;
-        
-        //login as customer
-        case 'c':
-            logIn.Customer_login();
-            break;
-        case 'C':
-            logIn.Customer_login();
-            break;
+            System.out.println("Login.java");
+            System.out.println("Log-In Menu");
+            System.out.println("");
+            System.out.println("Type of account to login:");
+            System.out.println("0 - Exit");
+            System.out.println("1 - Admin");
+            System.out.println("2 - Customer");
+
+            System.out.println("");
+            System.out.print("Enter a choice: ");
+            
+            try {
+                opt = scanner.nextInt();
+                //clearscreen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();  
+            
+                switch (opt) {
+                //login as Admin 
+                    case 0:
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        notDone = false; 
+                        break; 
+                    case 1:
+                        logIn.Admin_login();
+                        break;
+                
+                    //login as customer
+                    case 2:
+                        logIn.Customer_login();
+                        break;
+                    }
+            
+            } 
+            catch (InputMismatchException e) {
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                
+                System.out.println("Invalid input, integer only");
+                System.out.println("press any character to continue");
+            
+                char choice = scanner.next().charAt(0);
+
+                choice = scanner.next().charAt(0);
+                if((choice == 'c') || (choice == 'C')){
+                    System.out.println("Back to Option Menu");
+                    notDone = true; 
+                } 
+            }
         }
+        
     }
 }
