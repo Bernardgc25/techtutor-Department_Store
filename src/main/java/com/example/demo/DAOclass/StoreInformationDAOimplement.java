@@ -1,21 +1,17 @@
 package com.example.demo.DAOclass;
 
 import com.example.demo.DAOinterface.StoreInformationDAO;
-import com.example.demo.UserModel.Admin;
-import com.example.demo.UserModel.Customer;
-import com.example.demo.UserModel.Item;
 import com.example.demo.UserModel.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
+
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
-import javax.swing.RowFilter.Entry;
-
-
+import java.util.stream.Collectors;
 
 public class StoreInformationDAOimplement implements StoreInformationDAO{
 
@@ -86,7 +82,7 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 //remove item by productID
                 System.out.print("Enter Product Id to remove: ");
                 int pdelete = scanner.nextInt();
-	            Product premoobj = listOfproduct.get(pdelete);
+                Product premoobj = listOfproduct.get(pdelete);
 
                 //clear screen
                 System.out.print("\033[H\033[2J");  
@@ -316,7 +312,7 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
                 }
             }
-             
+        
             else {
                 System.out.println("product Name do not exist!!!");
             } 
@@ -333,13 +329,11 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
                 else if (choice == 's' || choice == 'S'){
                     searchnotDone = true;
                 }
-     
         }     
     }
 
     @Override
     public void dispExpenses() {
-   
         //clear screen
         System.out.print("\033[H\033[2J");  
         System.out.flush();
@@ -388,5 +382,42 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
         }    
     }
 
+    @Override
+    public void sortbyPrice() {
+
+        /* 
+
+        System.out.println("list of products:"); 
+        for(Map.Entry<Integer, Product> p:pset){
+            //System.out.println(":Key is "+p.getKey());
+            Product pobj=p.getValue();
+            System.out.println("Product Name: " +pobj.getProductName() + "Product Id:" +pobj.getProductId() +"Quantity: " 
+            +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
+        }
+        */
+
+
+
+
+
+        
+    }
+
+    @Override
+    public void HashmapToList() {
+
+        //convert product keys
+        List<Integer> productkeysList = listOfproduct.keySet().stream().collect(Collectors.toList());
+            for (Integer integer : productkeysList) {
+            System.out.println(integer);
+        }
+
+        List<Product> productvaluesList = listOfproduct.values().stream().collect(Collectors.toList());
+            for (Product s : productvaluesList) {
+            System.out.println(s);
+        }
+
+
+    }
 
 }

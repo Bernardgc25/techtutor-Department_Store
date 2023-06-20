@@ -7,7 +7,7 @@ public class Admin extends User{
         super();
     }
 
-    public Admin(String fname, String lname, char[] uname,  char[] uemail, char[]pwd){
+    public Admin(char[] fname, char[] lname, char[] uname,  char[] uemail, char[]pwd){
         super(fname, lname, uname, uemail, pwd);
     }
 

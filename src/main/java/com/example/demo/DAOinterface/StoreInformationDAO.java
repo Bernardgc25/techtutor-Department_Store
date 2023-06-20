@@ -1,5 +1,9 @@
 package com.example.demo.DAOinterface;
 
+import java.util.Map;
+
+import com.example.demo.UserModel.Product;
+
 public interface StoreInformationDAO {
 
     
@@ -29,6 +33,10 @@ public interface StoreInformationDAO {
 
     //display total profit 
     public void dispProfit();
+
+    public void sortbyPrice();
+
+    public void HashmapToList(); 
 
 
 }

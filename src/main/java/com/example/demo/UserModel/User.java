@@ -1,7 +1,7 @@
 package com.example.demo.UserModel;
 
 public class User{
-    protected String firstname, lastname;
+    protected char[] firstname, lastname;
     protected char[] email, username, password;
     protected int superCoins;  
 
@@ -10,7 +10,7 @@ public class User{
 
     }
 
-    public User(String fname, String lname, char[] uname,  char[] uemail, char[]pwd){
+    public User(char[] fname, char[] lname, char[] uname,  char[] uemail, char[]pwd){
         this.firstname = fname; 
         this.lastname = lname;
         this.username = uname; 
@@ -19,19 +19,19 @@ public class User{
     }
 
     //setters and getters
-    public String getFirstname() {
+    public char[] getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
+    public void setFirstname(char[] firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    public char[] getLastname() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastname(char[] lastname) {
         this.lastname = lastname;
     }
 

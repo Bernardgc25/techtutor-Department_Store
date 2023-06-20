@@ -22,8 +22,8 @@ public class Login { //System.out.println("");
             System.out.println("Login.java");
             System.out.println("Log-In Menu");
             System.out.println("");
-            System.out.println("Type of account to login:");
-            System.out.println("0 - Exit");
+            System.out.println("Type of user account:");
+            System.out.println("0 - Back");
             System.out.println("1 - Admin");
             System.out.println("2 - Customer");
 
@@ -59,8 +59,8 @@ public class Login { //System.out.println("");
                 System.out.print("\033[H\033[2J");  
                 System.out.flush();
                 
-                System.out.println("Invalid input, integer only");
-                System.out.println("press any character to continue");
+                System.out.println("Invalid input");
+                System.out.println("press a character and Enter to continue");
             
                 char choice = scanner.next().charAt(0);
 

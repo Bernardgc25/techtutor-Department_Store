@@ -21,7 +21,7 @@ public class Register {
             System.out.println("Register.java");  
             System.out.println("Register or Login Menu:");
             System.out.println("");
-            System.out.println("0 - Exit");
+            System.out.println("0 - Back");
             System.out.println("1 - Register");
             System.out.println("2 - Login");
 
@@ -55,8 +55,8 @@ public class Register {
                 System.out.print("\033[H\033[2J");  
                 System.out.flush();
                     
-                System.out.println("Invalid input, integer only");
-                System.out.println("press any character to continue");
+                System.out.println("Invalid input");
+                System.out.println("press a character and Enter to continue");
         
                 char choice = scanner.next().charAt(0);
 

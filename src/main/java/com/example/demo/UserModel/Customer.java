@@ -6,7 +6,7 @@ public class Customer extends User{
         super();
     }
 
-    public Customer(String fname, String lname, char[] uname,  char[] uemail, char[]pwd){
+    public Customer(char[] fname, char[] lname, char[] uname,  char[] uemail, char[]pwd){
         super(fname, lname, uname, uemail, pwd);
         //default value as welcome bonus
         superCoins = 100; 

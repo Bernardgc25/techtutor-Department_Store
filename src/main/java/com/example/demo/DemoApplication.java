@@ -60,8 +60,8 @@ public class DemoApplication {
 				System.out.print("\033[H\033[2J");  
 				System.out.flush();
 					
-				System.out.println("Invalid input, integer only");
-				System.out.println("press any character to continue");
+				System.out.println("Invalid input");
+                System.out.println("press a character and Enter to continue");
 				
 				char choice = scanner.next().charAt(0);
 
