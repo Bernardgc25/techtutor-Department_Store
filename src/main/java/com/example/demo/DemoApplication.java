@@ -30,7 +30,7 @@ public class DemoApplication {
 
 			user.reg(option);
 			System.out.println("DemoApplication.java");
-			System.out.println("Return to main menu? ");
+			
 			System.out.println("0 - Quit Program");
 			System.out.println("1 - Continue");
 			System.out.print("\n");
