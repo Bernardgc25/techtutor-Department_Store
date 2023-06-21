@@ -128,7 +128,7 @@ public class optionMenu {
                     break; 
                 //display by price sorted low to high    
                 case 1: 
-            
+                    sm.sortbyPrice();
                     break;
                 //search product by product Name
                 case 2:  

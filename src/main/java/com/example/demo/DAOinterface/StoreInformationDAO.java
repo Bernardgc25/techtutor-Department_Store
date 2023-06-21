@@ -34,9 +34,10 @@ public interface StoreInformationDAO {
     //display total profit 
     public void dispProfit();
 
+    //sort by price low to high
     public void sortbyPrice();
 
-    public void HashmapToList(); 
+
 
 
 }

@@ -4,9 +4,10 @@ import com.example.demo.DAOinterface.StoreInformationDAO;
 import com.example.demo.UserModel.Product;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.InputMismatchException;
-
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -385,39 +386,39 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
     @Override
     public void sortbyPrice() {
 
-        /* 
+      
 
-        System.out.println("list of products:"); 
-        for(Map.Entry<Integer, Product> p:pset){
-            //System.out.println(":Key is "+p.getKey());
-            Product pobj=p.getValue();
-            System.out.println("Product Name: " +pobj.getProductName() + "Product Id:" +pobj.getProductId() +"Quantity: " 
-            +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
+    //HashMap<Integer, Product> listOfproduct = new HashMap<>();
+        
+        if(listOfproduct.isEmpty()){
+            System.out.print("list is empty!! ");        
         }
-        */
+        else{
+            listOfproduct.entrySet().stream()
+                .sorted(Comparator.comparing(e -> e.getValue().getSellingPrice()))
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (left, right) -> left,
+                        LinkedHashMap::new));
 
+            System.out.println("list of products:"); 
+            for(Map.Entry<Integer, Product> p:pset){
+                //System.out.println(":Key is "+p.getKey());
+                Product pobj=p.getValue();
+                System.out.println("Product Name: " +pobj.getProductName() + "Product Id:" +pobj.getProductId() +"Quantity: " 
+                +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
+                }
+        }
+            //return to option menu
+            System.out.println("");
+            System.out.print("(M) go back to menu: ");
+            choice = scanner.next().charAt(0);
 
-
-
+            System.out.println("");
+            if(choice == 'm' || choice == 'M'){
+                return; 
+            }  
 
         
     }
-
-    @Override
-    public void HashmapToList() {
-
-        //convert product keys
-        List<Integer> productkeysList = listOfproduct.keySet().stream().collect(Collectors.toList());
-            for (Integer integer : productkeysList) {
-            System.out.println(integer);
-        }
-
-        List<Product> productvaluesList = listOfproduct.values().stream().collect(Collectors.toList());
-            for (Product s : productvaluesList) {
-            System.out.println(s);
-        }
-
-
-    }
-
 }
