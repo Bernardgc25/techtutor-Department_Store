@@ -3,7 +3,7 @@ package com.example.demo.Menu;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.example.demo.DAOclass.UserDAOimplement;
+import com.example.demo.Service.User_Service_impl;
 
 
 public class Login { //System.out.println("");
@@ -11,7 +11,7 @@ public class Login { //System.out.println("");
     Scanner scanner = new Scanner(System.in);
     
     public void login_menu(int opt) {
-        UserDAOimplement logIn = new UserDAOimplement(); 
+        User_Service_impl logIn = new User_Service_impl(); 
         boolean notDone = true;
 
         while(notDone){

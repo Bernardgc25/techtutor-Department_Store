@@ -1,16 +1,16 @@
-package com.example.demo.DAOclass;
+package com.example.demo.Service;
 
-import com.example.demo.DAOinterface.UserDAO;
+import com.example.demo.Model.Admin;
+import com.example.demo.Model.Customer;
 import com.example.demo.OptionMenu.optionMenu;
-import com.example.demo.UserModel.Admin;
-import com.example.demo.UserModel.Customer;
+import com.example.demo.Service_Interface.User_Service_Interface;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class UserDAOimplement implements UserDAO{
+public class User_Service_impl implements User_Service_Interface{
     //user input 
     char[] firstName, lastName; 
     char[] userName, useremail, password;

@@ -1,4 +1,4 @@
-package com.example.demo.UserModel;
+package com.example.demo.Model;
 
 public class Item{
     protected String Itemname, Category; 

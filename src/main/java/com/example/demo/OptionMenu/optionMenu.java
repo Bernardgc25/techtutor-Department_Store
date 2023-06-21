@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.example.demo.DemoApplication;
-import com.example.demo.DAOclass.StoreInformationDAOimplement;
+import com.example.demo.Service.Store_Service_impl;
 
 
 public class optionMenu {
@@ -14,7 +14,7 @@ public class optionMenu {
     }
 
     Scanner scanner = new Scanner(System.in);
-    StoreInformationDAOimplement sm = new StoreInformationDAOimplement(); 
+    Store_Service_impl sm = new Store_Service_impl(); 
 
     //console menu
     public int adminMenu(int opt){

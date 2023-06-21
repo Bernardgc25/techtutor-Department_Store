@@ -1,4 +1,4 @@
-package com.example.demo.UserModel;
+package com.example.demo.Model;
 
 public class User{
     protected char[] firstname, lastname;

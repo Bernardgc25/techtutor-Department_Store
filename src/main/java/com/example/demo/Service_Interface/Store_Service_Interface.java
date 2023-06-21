@@ -1,10 +1,10 @@
-package com.example.demo.DAOinterface;
+package com.example.demo.Service_Interface;
 
 import java.util.Map;
 
-import com.example.demo.UserModel.Product;
+import com.example.demo.Model.Product;
 
-public interface StoreInformationDAO {
+public interface Store_Service_Interface {
 
     
     //add new product by Admin

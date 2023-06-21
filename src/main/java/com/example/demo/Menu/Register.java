@@ -1,15 +1,15 @@
 package com.example.demo.Menu;
 
-import com.example.demo.DAOclass.UserDAOimplement;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import com.example.demo.Service.User_Service_impl;
 
 public class Register {
     Scanner scanner = new Scanner(System.in);
 
     public void reg(int opt) {
-        UserDAOimplement usr_register = new UserDAOimplement(); 
+        User_Service_impl usr_register = new User_Service_impl(); 
         Login usr_login = new Login();
 
         boolean notDone = true;

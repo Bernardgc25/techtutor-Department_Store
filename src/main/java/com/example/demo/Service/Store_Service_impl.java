@@ -1,7 +1,7 @@
-package com.example.demo.DAOclass;
+package com.example.demo.Service;
 
-import com.example.demo.DAOinterface.StoreInformationDAO;
-import com.example.demo.UserModel.Product;
+import com.example.demo.Model.Product;
+import com.example.demo.Service_Interface.Store_Service_Interface;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class StoreInformationDAOimplement implements StoreInformationDAO{
+public class Store_Service_impl implements Store_Service_Interface{
 
     
     HashMap<Integer, Product> listOfproduct = new HashMap<>();
@@ -25,7 +25,7 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
     ArrayList<Double> expenses = new ArrayList<Double>();
 
     //constructor
-    public StoreInformationDAOimplement(){
+    public Store_Service_impl(){
         
     }
 
@@ -389,7 +389,10 @@ public class StoreInformationDAOimplement implements StoreInformationDAO{
       
 
     //HashMap<Integer, Product> listOfproduct = new HashMap<>();
-        
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+    
         if(listOfproduct.isEmpty()){
             System.out.print("list is empty!! ");        
         }
