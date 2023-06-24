@@ -17,8 +17,6 @@ public class User_Service implements User_Service_Interface{
     Scanner scanner;
     
     private AdminDAO uDao; 
-    //Admin ad = new Admin();
-    //Customer cu = new Customer();
 
     public User_Service()
     {
@@ -156,7 +154,7 @@ public class User_Service implements User_Service_Interface{
     public void Admin_login() {
         //validate admin credentials 
         optionMenu adMenu = new optionMenu(); 
-        Admin ad = new Admin();
+     
         
         System.out.print("Enter username: ");
         userName = scanner.next().toCharArray();

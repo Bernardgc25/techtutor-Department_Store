@@ -1,0 +1,23 @@
+Start SQL: 				sudo mysql -u root -p
+show list of database			show databases;
+show current database: 			SELECT DATABASE();
+go to database: 			use [db name];
+show list of tables in databass: 	show tables
+create table:                   	create table product('data', 'data');
+show table fields: 			show fields from [table name];
+insert values on table: 		insert into [table name] values('data', 'data');
+display values on table: 		select * from user;
+exit mysql: 				exit
+
+
+
+CREATE TABLE Admin (
+    FirstName varchar(255),
+    LastName varchar(255),
+    Username varchar(255),
+    Email varchar(255),
+    Password varchar(255)
+);
+
+
+insert into Admin values('Bernard', 'GoleCruz', 'Bernard_gcruz@yahoo.com', 'uname', 'pwd');

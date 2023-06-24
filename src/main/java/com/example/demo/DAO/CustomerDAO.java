@@ -9,17 +9,17 @@ import com.example.demo.Model.Customer;
 public class CustomerDAO {
 
     private Scanner scanner; 
-    public ArrayList<Customer> customer = new ArrayList<Customer>();
+    public ArrayList<Customer> customerdao = new ArrayList<Customer>();
     //customer functions 
     
     public CustomerDAO(){
         scanner = new Scanner(System.in);
-        customer = new ArrayList<Customer>();
+        customerdao = new ArrayList<Customer>();
     }
 
 
     public void insertCustomer(Customer cu){
-        customer.add(cu);
+        customerdao.add(cu);
         System.out.println("you have succesfully register a customer account");
         System.out.println("press a character and Enter to continue");
 
@@ -28,7 +28,7 @@ public class CustomerDAO {
     public ArrayList<Customer> getCustomerDetail(){
         System.out.println("verifying record from Customer database");  
         System.out.println("\n");  
-        return customer;
+        return customerdao;
     }
 
 }
