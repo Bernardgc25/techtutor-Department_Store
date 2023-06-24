@@ -27,8 +27,8 @@ public class User_Service_impl implements User_Service_Interface{
 
 
     private AdminDAO uDao; 
-   // Admin ad = new Admin();
-    Customer cu = new Customer();
+    //Admin ad = new Admin();
+    //Customer cu = new Customer();
 
     public User_Service_impl()
     {
@@ -122,7 +122,7 @@ public class User_Service_impl implements User_Service_Interface{
                 
                     //register as customer
                     case 2:
-                        //Customer cu = new Customer();
+                        Customer cu = new Customer();
                         System.out.println("you are registering for a Customer account");
                         System.out.println("");
                         //save input into variable including spaces 
