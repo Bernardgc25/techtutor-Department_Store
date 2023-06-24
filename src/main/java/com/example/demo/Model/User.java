@@ -1,9 +1,11 @@
 package com.example.demo.Model;
 
 public class User{
-    protected char[] firstname, lastname;
-    protected char[] email, username, password;
+    
+    private char[] firstname, lastname;
+    private char[] email, username, password;
     protected int superCoins;  
+    
 
     //constructors
     public User(){

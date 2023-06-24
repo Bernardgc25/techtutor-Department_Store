@@ -11,7 +11,7 @@ public class DataConnect {
 			//for mysql 8 write
 			//Class.forName("com.mysql.cj.jdbc.Driver");
 			//It is loading Driver class from jar file
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/junemap","root","mysql");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/deptStore","root","mysql");
 			/*jdbc-protoocal
 			 * mysql-sub protocol
 			 * localhost-address of current
@@ -33,5 +33,12 @@ public class DataConnect {
 		DataConnect c=new DataConnect();
 		return con;
 	}
+	
+	public static void main(String[] args) {
+		getconnect();
+	}
+		
+
+
 
 }
