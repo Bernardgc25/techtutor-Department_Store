@@ -1,5 +1,7 @@
 package com.example.demo.Service;
 
+import com.example.demo.DAO.StoreDAO;
+import com.example.demo.DAO.AdminDAO;
 import com.example.demo.Model.Admin;
 import com.example.demo.Model.Customer;
 import com.example.demo.OptionMenu.optionMenu;
@@ -16,10 +18,24 @@ public class User_Service_impl implements User_Service_Interface{
     char[] userName, useremail, password;
 
     ///Admin 
-    public List<Admin> Adminlist = new ArrayList<Admin>(1);
-    public List<Customer> Customerlist = new ArrayList<Customer>();
+   // public List<Admin> Adminlist = new ArrayList<Admin>(1);
+   // public List<Customer> Customerlist = new ArrayList<Customer>();
 
-    Scanner scanner = new Scanner(System.in);
+    //Scanner scanner = new Scanner(System.in);
+    Scanner scanner;
+    
+
+
+    private AdminDAO uDao; 
+   // Admin ad = new Admin();
+    Customer cu = new Customer();
+
+    public User_Service_impl()
+    {
+        scanner = new Scanner(System.in);
+        AdminDAO uDao = new AdminDAO(); 
+    }
+                        
 
     @Override
     public void register_menu(int opt) {
@@ -87,14 +103,14 @@ public class User_Service_impl implements User_Service_Interface{
                         ad.setPassword(password);
                         scanner.nextLine(); 
 
-                        //add to adminlist
-                        Adminlist.add(ad);
+                        //add to Administrator 
+                        uDao.insertAdmin(ad);
 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
                         //display info
-                        System.out.println("you have succesfully register an Admin account");
-                        System.out.println("press a character and Enter to continue");
+                        //System.out.println("you have succesfully register an Admin account");
+                        //System.out.println("press a character and Enter to continue");
 
                         choice = scanner.next().charAt(0);
                         if((choice == 'c') || (choice == 'C')){
@@ -102,13 +118,11 @@ public class User_Service_impl implements User_Service_Interface{
                             notDone = true; 
                         } 
 
-                        //save account to database   
-                        //code here   
                     break;
                 
                     //register as customer
                     case 2:
-                        Customer cu = new Customer();
+                        //Customer cu = new Customer();
                         System.out.println("you are registering for a Customer account");
                         System.out.println("");
                         //save input into variable including spaces 
@@ -136,15 +150,14 @@ public class User_Service_impl implements User_Service_Interface{
                         cu.setPassword(password);
                         scanner.nextLine(); 
 
-                        //add to adminlist
-                        Customerlist.add(cu);
-
+                        //add to customerlist  
+                
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
 
                         //display info
-                        System.out.println("you have succesfully register a customer account");
-                        System.out.println("press a character and Enter to continue");
+                        //System.out.println("you have succesfully register a customer account");
+                        //System.out.println("press a character and Enter to continue");
                     
                         choice = scanner.next().charAt(0);
                         if((choice == 'c') || (choice == 'C')){
@@ -152,8 +165,6 @@ public class User_Service_impl implements User_Service_Interface{
                             notDone = true; 
                         } 
 
-                        //save account to database
-                        //code here
                     break;
                 }                
             } 
@@ -196,35 +207,13 @@ public class User_Service_impl implements User_Service_Interface{
         
         //validate records 
         //get record from database
-        System.out.println("verifying record from Admin database");  
-        System.out.println("\n");  
+        //System.out.println("verifying record from Admin database");  
+        //System.out.println("\n");  
 		
-        /* 
-        for (int i=0; i<Adminlist.size(); i++) {
-            System.out.println("firstName:" + ad.getFirstname());
-            System.out.println("secondName:" + ad.getLastname());
- 
-            System.out.print("email: ");
-            System.out.println(ad.getEmail());
-
-            System.out.print("userName: ");
-            System.out.println(ad.getUsername());
-
-            System.out.print("password: ");
-            System.out.println(ad.getPassword());
-        }
+        //validate records 
+        //get record from database
+        uDao.getAdminDetail();
         
-        */
-
-        /* 
-        if(Adminlist.get(i).getUsername().equals(userName) && Adminlist.get(i).getPassword().equals(password)){
-            System.out.println("successfully logged-in..");
-        }
-        else{
-            System.out.println("No records, Invalid try again");     
-        }
-            
-        */
         int adMenu_Value; 
         int opt = 0; 
 
@@ -264,19 +253,12 @@ public class User_Service_impl implements User_Service_Interface{
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
         
+        //System.out.println("verifying record from Customer database");  
+        //System.out.println("\n");  
+
         //validate records 
-
         //get record from database
-        System.out.println("verifying record from Customer database");  
-        System.out.println("\n");  
-
-
-
-        //code here
-        //invoke customer option (option Menu.java) 
-        //create separate threads for user 
-
-
+        
 
         int cuMenu_Value; 
         int opt = 0; 
@@ -290,7 +272,7 @@ public class User_Service_impl implements User_Service_Interface{
                 }    
                 //clearscreen
                 System.out.print("\033[H\033[2J");  
-	            System.out.flush();          
+                System.out.flush();          
             }
     }
     
