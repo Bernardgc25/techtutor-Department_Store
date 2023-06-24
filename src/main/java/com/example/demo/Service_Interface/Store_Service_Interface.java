@@ -37,7 +37,4 @@ public interface Store_Service_Interface {
     //sort by price low to high
     public void sortbyPrice();
 
-
-
-
 }

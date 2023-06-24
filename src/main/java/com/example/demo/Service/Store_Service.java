@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Store_Service_impl implements Store_Service_Interface{
+public class Store_Service implements Store_Service_Interface{
 
     
     HashMap<Integer, Product> listOfproduct = new HashMap<>();
@@ -25,7 +25,7 @@ public class Store_Service_impl implements Store_Service_Interface{
     ArrayList<Double> expenses = new ArrayList<Double>();
 
     //constructor
-    public Store_Service_impl(){
+    public Store_Service(){
         
     }
 

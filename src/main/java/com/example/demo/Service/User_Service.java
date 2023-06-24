@@ -1,36 +1,26 @@
 package com.example.demo.Service;
 
-import com.example.demo.DAO.StoreDAO;
 import com.example.demo.DAO.AdminDAO;
 import com.example.demo.Model.Admin;
 import com.example.demo.Model.Customer;
 import com.example.demo.OptionMenu.optionMenu;
 import com.example.demo.Service_Interface.User_Service_Interface;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
-public class User_Service_impl implements User_Service_Interface{
+public class User_Service implements User_Service_Interface{
     //user input 
     char[] firstName, lastName; 
     char[] userName, useremail, password;
 
-    ///Admin 
-   // public List<Admin> Adminlist = new ArrayList<Admin>(1);
-   // public List<Customer> Customerlist = new ArrayList<Customer>();
-
-    //Scanner scanner = new Scanner(System.in);
     Scanner scanner;
     
-
-
     private AdminDAO uDao; 
     //Admin ad = new Admin();
     //Customer cu = new Customer();
 
-    public User_Service_impl()
+    public User_Service()
     {
         scanner = new Scanner(System.in);
         AdminDAO uDao = new AdminDAO(); 
@@ -74,43 +64,34 @@ public class User_Service_impl implements User_Service_Interface{
                     break; 
                     //register as Admin 
                     case 1:
+                        //admin object
                         Admin ad = new Admin();
+
                         System.out.println("you are registering for an Admin account");
                         System.out.println("");
                         //save input into variable including spaces 
                         scanner.nextLine(); 
-                        System.out.print("Enter firstName: ");
-                        firstName = scanner.next().toCharArray();
                         
-                        ad.setFirstname(firstName);
-                        //scanner.nextLine(); 
+                        System.out.print("Enter firstName: ");
+                        ad.setFirstname(scanner.next().toCharArray());
 
                         System.out.print("Enter lastName: ");
-                        lastName = scanner.next().toCharArray();
-                        ad.setLastname(lastName);
+                        ad.setLastname(scanner.next().toCharArray());
 
                         System.out.print("Enter Email: ");
-                        lastName = scanner.next().toCharArray();
-                        ad.setEmail(useremail);
+                        ad.setEmail(scanner.next().toCharArray());
                         
                         System.out.print("Enter userName: ");
-                        userName = scanner.next().toCharArray();
-                        ad.setUsername(userName);
-                        scanner.nextLine();
+                        ad.setEmail(scanner.next().toCharArray());
                         
                         System.out.print("Enter password: ");
-                        password = scanner.next().toCharArray();
-                        ad.setPassword(password);
-                        scanner.nextLine(); 
+                        ad.setPassword(scanner.next().toCharArray());
 
-                        //add to Administrator 
+                        //add to Administrator invoke AdminDAO
                         uDao.insertAdmin(ad);
 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
-                        //display info
-                        //System.out.println("you have succesfully register an Admin account");
-                        //System.out.println("press a character and Enter to continue");
 
                         choice = scanner.next().charAt(0);
                         if((choice == 'c') || (choice == 'C')){
@@ -122,43 +103,29 @@ public class User_Service_impl implements User_Service_Interface{
                 
                     //register as customer
                     case 2:
-                        Customer cu = new Customer();
-                        System.out.println("you are registering for a Customer account");
-                        System.out.println("");
-                        //save input into variable including spaces 
-                        scanner.nextLine(); 
+                        Customer cu = new Customer();    
+
                         System.out.print("Enter firstName: ");
-                        firstName = scanner.next().toCharArray();
-                        cu.setFirstname(firstName);
-                        //scanner.nextLine(); 
+                        cu.setFirstname(scanner.next().toCharArray());
 
                         System.out.print("Enter lastName: ");
-                        lastName = scanner.next().toCharArray();
-                        cu.setLastname(lastName);
+                        cu.setLastname(scanner.next().toCharArray());
 
                         System.out.print("Enter Email: ");
-                        lastName = scanner.next().toCharArray();
-                        cu.setEmail(useremail);
+                        cu.setEmail(scanner.next().toCharArray());
                         
                         System.out.print("Enter userName: ");
-                        userName = scanner.next().toCharArray();
-                        cu.setUsername(userName);
-                        scanner.nextLine();
+                        cu.setEmail(scanner.next().toCharArray());
                         
                         System.out.print("Enter password: ");
-                        password = scanner.next().toCharArray();
-                        cu.setPassword(password);
-                        scanner.nextLine(); 
+                        cu.setPassword(scanner.next().toCharArray());
 
-                        //add to customerlist  
+                        //add to customerlist invoke CustomerDAO
+                        //
                 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
 
-                        //display info
-                        //System.out.println("you have succesfully register a customer account");
-                        //System.out.println("press a character and Enter to continue");
-                    
                         choice = scanner.next().charAt(0);
                         if((choice == 'c') || (choice == 'C')){
                             System.out.println("Back to Option Menu");
@@ -189,13 +156,14 @@ public class User_Service_impl implements User_Service_Interface{
     public void Admin_login() {
         //validate admin credentials 
         optionMenu adMenu = new optionMenu(); 
+        Admin ad = new Admin();
         
         System.out.print("Enter username: ");
         userName = scanner.next().toCharArray();
         scanner.nextLine();
 
         //testuserN = ad.getUsername();
-
+    
         System.out.print("Enter password: ");
         password= scanner.next().toCharArray();
         scanner.nextLine();
@@ -204,15 +172,10 @@ public class User_Service_impl implements User_Service_Interface{
 
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
-        
+
         //validate records 
         //get record from database
-        //System.out.println("verifying record from Admin database");  
-        //System.out.println("\n");  
-		
-        //validate records 
-        //get record from database
-        uDao.getAdminDetail();
+        //uDao.getAdminDetail();
         
         int adMenu_Value; 
         int opt = 0; 

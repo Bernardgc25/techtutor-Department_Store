@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.example.demo.DemoApplication;
-import com.example.demo.Service.Store_Service_impl;
+import com.example.demo.Service.Store_Service;
 
 
 public class optionMenu {
@@ -14,7 +14,7 @@ public class optionMenu {
     }
 
     Scanner scanner = new Scanner(System.in);
-    Store_Service_impl sm = new Store_Service_impl(); 
+    Store_Service sm = new Store_Service(); 
 
     //console menu
     public int adminMenu(int opt){
