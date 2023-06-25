@@ -16,12 +16,14 @@ public class User_Service implements User_Service_Interface{
 
     Scanner scanner;
     
-    private AdminDAO uDao; 
+    AdminDAO uDao; 
+    
+    
 
     public User_Service()
     {
         scanner = new Scanner(System.in);
-        AdminDAO uDao = new AdminDAO(); 
+        uDao = new AdminDAO(); 
     }
                         
 
@@ -91,6 +93,7 @@ public class User_Service implements User_Service_Interface{
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
 
+                        System.out.println("press a character and Enter to continue");
                         choice = scanner.next().charAt(0);
                         if((choice == 'c') || (choice == 'C')){
                             System.out.println("Back to Option Menu");
@@ -124,6 +127,7 @@ public class User_Service implements User_Service_Interface{
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
 
+                        System.out.println("press a character and Enter to continue");
                         choice = scanner.next().charAt(0);
                         if((choice == 'c') || (choice == 'C')){
                             System.out.println("Back to Option Menu");
