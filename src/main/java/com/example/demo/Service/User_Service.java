@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.DAO.AdminDAO;
+import com.example.demo.DAO.CustomerDAO;
 import com.example.demo.Model.Admin;
 import com.example.demo.Model.Customer;
 import com.example.demo.OptionMenu.optionMenu;
@@ -16,14 +17,16 @@ public class User_Service implements User_Service_Interface{
 
     Scanner scanner;
     
-    AdminDAO uDao; 
+    AdminDAO aDao; 
+    CustomerDAO cDao; 
     
     
 
     public User_Service()
     {
         scanner = new Scanner(System.in);
-        uDao = new AdminDAO(); 
+        aDao = new AdminDAO(); 
+        cDao = new CustomerDAO();
     }
                         
 
@@ -88,12 +91,15 @@ public class User_Service implements User_Service_Interface{
                         ad.setPassword(scanner.next().toCharArray());
 
                         //add to Administrator invoke AdminDAO
-                        uDao.insertAdmin(ad);
+                        aDao.insertAdmin(ad);
 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
 
+                        //display info
+                        System.out.println("you have succesfully register an Admin account");
                         System.out.println("press a character and Enter to continue");
+                     
                         choice = scanner.next().charAt(0);
                         if((choice == 'c') || (choice == 'C')){
                             System.out.println("Back to Option Menu");
@@ -122,7 +128,7 @@ public class User_Service implements User_Service_Interface{
                         cu.setPassword(scanner.next().toCharArray());
 
                         //add to customerlist invoke CustomerDAO
-                        //
+                        cDao.insertCustomer(cu);
                 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
@@ -158,7 +164,7 @@ public class User_Service implements User_Service_Interface{
     public void Admin_login() {
         //validate admin credentials 
         optionMenu adMenu = new optionMenu(); 
-     
+
         
         System.out.print("Enter username: ");
         userName = scanner.next().toCharArray();
@@ -175,9 +181,10 @@ public class User_Service implements User_Service_Interface{
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
 
-        //validate records 
-        //get record from database
-        //uDao.getAdminDetail();
+        //validate records from database
+        aDao.validate(userName, password);
+        
+
         
         int adMenu_Value; 
         int opt = 0; 

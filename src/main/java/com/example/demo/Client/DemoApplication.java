@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Client;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

@@ -18,11 +18,31 @@ public class AdminDAO {
     //administrator functions
     public void insertAdmin(Admin ad){
         Admindao.add(ad);
-        //display info
-        System.out.println("you have succesfully register an Admin account");
-        System.out.println("press a character and Enter to continue");
         
     }
+
+    public void validate(char[] userName, char[]password){
+        boolean loggedIn = false;
+        for(Admin a : Admindao) {
+            if (a.getUsername().equals(userName) && a.getPassword().equals(password)) {
+                loggedIn = true;
+                System.out.println("login succesful");
+            }
+            else{
+                System.out.println("invalid credentials !!!");    
+            }
+            
+        }
+            char choice = '\0';
+            System.out.println("press a character and Enter to continue");
+            choice = scanner.next().charAt(0);
+                if((choice == 'c') || (choice == 'C')){
+                System.out.println("Back to Option Menu");
+            } 
+   
+    }
+
+    
 
     public List<Admin> getAdminDetail(){
         System.out.println("verifying record from Admin database");  
