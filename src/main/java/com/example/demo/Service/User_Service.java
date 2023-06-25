@@ -181,11 +181,33 @@ public class User_Service implements User_Service_Interface{
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
 
-        //validate records from database
-        aDao.validate(userName, password);
-        
+    
+        boolean isvalid = true; 
+       
+        while(isvalid){
+            //validate records from database
+            isvalid = aDao.validate(userName, password);
 
+            //login succesful, 
+            if(isvalid == true){
+                isvalid = false; 
+            }
+            //not succesful, prompt user to try again 
+            else{
+              
+            }  
+
+            char choice = '\0';
+            System.out.println("press a character and Enter to continue");
+                
+            choice = scanner.next().charAt(0);
+                if((choice == 'c') || (choice == 'C')){
+                System.out.println("Back to Option Menu");
+                } 
+        }
         
+        
+        //menu option for administrator
         int adMenu_Value; 
         int opt = 0; 
 
