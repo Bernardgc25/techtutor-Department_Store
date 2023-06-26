@@ -4,14 +4,17 @@ import java.sql.*;
 
 public class DataConnect {
 	private static Connection con;//creating reference variable of Connection
-	private DataConnect(){
+	public DataConnect(){
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
+			//for mysql 5 write
+			//Class.forName("com.mysql.jdbc.Driver");
 			//for mysql 8 write
-			//Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			//It is loading Driver class from jar file
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/deptStore","root","mysql");
+			//driverManager.getConn
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/store","bernard","@Bm071011");
+		
 			/*jdbc-protoocal
 			 * mysql-sub protocol
 			 * localhost-address of current
@@ -34,10 +37,11 @@ public class DataConnect {
 		return con;
 	}
 	
+	
 	public static void main(String[] args) {
 		getconnect();
 	}
-		
+	
 
 
 

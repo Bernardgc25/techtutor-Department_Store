@@ -3,7 +3,7 @@ package com.example.demo.OptionMenu;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.example.demo.Client.DemoApplication;
+import com.example.demo.Client.Application;
 import com.example.demo.Service.Store_Service;
 
 

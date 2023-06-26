@@ -1,4 +1,4 @@
-package com.example.demo.DAO;
+package com.example.demo.Service;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import com.example.demo.Model.Admin;
 import com.example.demo.Model.Customer;
 
-public class CustomerDAO {
+public class CustomerList_Service {
 
     private Scanner scanner; 
     public ArrayList<Customer> customerdao = new ArrayList<Customer>();
     //customer functions 
     
-    public CustomerDAO(){
+    public CustomerList_Service(){
         scanner = new Scanner(System.in);
         customerdao = new ArrayList<Customer>();
     }

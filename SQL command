@@ -1,23 +1,21 @@
 Start SQL: 				            	sudo mysql -u root -p
-create a database: 					    CREATE DATABASE [db name];
+create a database: 					CREATE DATABASE [db name];
 show list of database			       	show databases;
 show current database: 			        SELECT DATABASE();
-go to database: 			            use [db name];
-show list of tables in databass: 	    show tables
-create table:                   	    create table product('data', 'data');
-show table fields: 			            show fields from [table name];
-insert values on table: 		        insert into [table name] values('data', 'data');
-display values on table: 		        select * from [table name];
-exit mysql: 				            exit
+go to database: 			            	use [db name];
+show list of tables in databass: 	    		show tables
+create table:                   	    		create table product('data', 'data');
+show table fields: 			            	show fields from [table name];
+insert values on table: 		        	insert into [table name] values('data', 'data');
+display values on table: 		        	select * from [table name];
+exit mysql: 				            	exit
 
 
 
-show mysql users:					    SELECT user FROM mysql.user; 
-create new user:					    CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-grant priveleges 					    GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
+show mysql users:					SELECT user FROM mysql.user; 
+create new user:					CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+grant priveleges 					GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
 
-
-//create table
 CREATE TABLE Admin (
     FirstName varchar(255),
     LastName varchar(255),
@@ -26,5 +24,5 @@ CREATE TABLE Admin (
     Password varchar(255)
 );
 
-//insert values in table
+
 insert into Admin values('Bernard', 'GoleCruz', 'Bernard_gcruz@yahoo.com', 'uname', 'pwd');

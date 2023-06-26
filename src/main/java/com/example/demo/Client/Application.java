@@ -7,12 +7,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.Menu.Register;
+import com.example.demo.Util.DataConnect;
 
 @SpringBootApplication
-public class DemoApplication {
+public class Application {
 
 	public static void main(String[] args) {
-	SpringApplication.run(DemoApplication.class, args);
+	SpringApplication.run(Application.class, args);
+	DataConnect dc = new DataConnect();
+	//DataConnect.getconnect();
+
 
 	int option = 0; 
 
