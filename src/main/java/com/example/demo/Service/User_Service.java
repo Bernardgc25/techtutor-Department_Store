@@ -100,7 +100,7 @@ public class User_Service implements User_Service_Interface{
                         adao.insert(ad);
 
                         //add to Administrator list
-                        admL.insertAdmin(ad);
+                        //admL.insertAdmin(ad);
 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
