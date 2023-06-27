@@ -50,20 +50,21 @@ public class AdminDAO {
                 
                 PreparedStatement ps = con.prepareStatement(sql);
 
-               //ps.setCharacterStream(1, new CharArrayReader(ad.getUsername()));
-               //ps.setCharacterStream(2, new CharArrayReader(ad.getPassword()));
+                ps.setCharacterStream(1, new CharArrayReader(userName));
+                ps.setCharacterStream(2, new CharArrayReader(password));
            
-                ps.setString(1, String.valueOf(ad.getUsername()));
-                ps.setString(1, String.valueOf(ad.getPassword()));
+                //ps.setString(1, String.valueOf(userName));
+                //ps.setString(1, String.valueOf(password));
 
                 ResultSet rs = ps.executeQuery(); 
                 
          
                 while( rs.next() ){
-                    uname = rs.getString("username");
-                    pwd = rs.getString("password");
                     
-                    return ad; 
+                    
+                    //uname = rs.getString("username");
+                    //pwd = rs.getString("password");
+                    //Admin ad = new Admin(rs.getNCharacterStream(userName), password)
                 }
                 
                 
