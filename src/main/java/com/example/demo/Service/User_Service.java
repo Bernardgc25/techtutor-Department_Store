@@ -194,7 +194,18 @@ public class User_Service implements User_Service_Interface{
 
     
         boolean isvalid = true; 
-       
+
+        //validate user credentials 
+        //adao
+          
+          
+     
+
+
+
+
+
+        /* 
         while(isvalid){
             //validate records from database
             isvalid = admL.validate(userName, password);
@@ -216,8 +227,11 @@ public class User_Service implements User_Service_Interface{
                 System.out.println("Back to Option Menu");
                 } 
         }
+        */
         
-        
+
+
+
         //menu option for administrator
         int adMenu_Value; 
         int opt = 0; 
