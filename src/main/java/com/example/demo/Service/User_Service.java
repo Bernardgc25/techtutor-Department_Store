@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 public class User_Service implements User_Service_Interface{
     //user input 
-    String firstName, lastName; 
-    String un, useremail, pwd;
+    char[] firstName, lastName; 
+    char[] un, useremail, pwd;
 
     Scanner scanner;
     
@@ -176,43 +176,40 @@ public class User_Service implements User_Service_Interface{
         //validate admin credentials 
         optionMenu adMenu = new optionMenu(); 
       
-        
+
         System.out.print("Enter username: ");
-        un = scanner.next();
-        scanner.nextLine();
-    
+        un = scanner.next().toCharArray();
+        //un = scanner.nextLine();
+        
         System.out.print("Enter password: ");
-        pwd = scanner.nextLine();
-        scanner.nextLine();
-      
+        pwd = scanner.next().toCharArray();
+        //pwd = scanner.nextLine();
+        
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
 
         //validate user credentials          
         Admin adminValidated = adao.validate(un,pwd);
 
-            if (adminValidated != null){
-                System.out.println("Login in Succesful");
+            //username and password exist in database
+            if (adminValidated == null){
+                System.out.println("Incorrect Username or Password");
+                        
             }
-            //admin user not on database 
-            else   {
-                System.out.println("Incorrect Username or Password, Login in Unsuccesfull");
-                System.out.println(adminValidated);
-         
+            //username and password doesn not exist in database
+            else {
+                System.out.println("Login in Successful");
+                      
             }
                 
           
        
-                System.out.println("press a character and Enter to continue");
-    
-                char choice = scanner.next().charAt(0);
-
-                choice = scanner.next().charAt(0);
-                if((choice == 'c') || (choice == 'C')){
-                    System.out.println("Back to Option Menu");
+            System.out.println("press a character and Enter to continue");
+            char choice = scanner.next().charAt(0);
+            if((choice == 'c') || (choice == 'C')){
+                System.out.println("Back to Option Menu");
                    
-                }
-
+            }
 
 
         //menu option for administrator

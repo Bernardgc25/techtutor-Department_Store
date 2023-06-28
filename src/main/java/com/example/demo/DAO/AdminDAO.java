@@ -40,31 +40,27 @@ public class AdminDAO {
         }       
     }
 
- 
+        
         //retrieve username from accounts table
-        public Admin validate(char[] userName, char[]password){
-            Admin ad = new Admin();
-            String uname, pwd;
+        public Admin validate(char[] un, char[] pwd){
+        
+    
             try {
-                String sql = "SELECT * FROM Admin WHERE username = ? and password = ?";
+                String sql = "SELECT * FROM Admin WHERE Username = ? and Password = ?";
                 
                 PreparedStatement ps = con.prepareStatement(sql);
 
-                ps.setCharacterStream(1, new CharArrayReader(userName));
-                ps.setCharacterStream(2, new CharArrayReader(password));
+                //ps.setCharacterStream(1, new CharArrayReader(userName));
+                //ps.setCharacterStream(2, new CharArrayReader(password));
            
-                //ps.setString(1, String.valueOf(userName));
-                //ps.setString(1, String.valueOf(password));
+                ps.setString(1, String.valueOf(un));
+                ps.setString(2, String.valueOf(pwd));
 
                 ResultSet rs = ps.executeQuery(); 
-                
-         
+                  
                 while( rs.next() ){
-                    
-                    
-                    //uname = rs.getString("username");
-                    //pwd = rs.getString("password");
-                    //Admin ad = new Admin(rs.getNCharacterStream(userName), password)
+                    return new Admin(rs.getString("username"), rs.getString("password"));
+
                 }
                 
                 
@@ -72,7 +68,7 @@ public class AdminDAO {
                System.out.println(e.getMessage());
             }
             
-            return null; 
+            return null;
          
         }
         

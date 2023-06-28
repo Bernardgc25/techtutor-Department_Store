@@ -6,12 +6,14 @@ public class User{
     private char[] email, username, password;
     protected int superCoins;  
     
+    String Username, Password;
 
     //constructors
     public User(){
 
     }
 
+    //posting a new account to database
     public User(char[] fname, char[] lname, char[] uname,  char[] uemail, char[]pwd){
         this.firstname = fname; 
         this.lastname = lname;
@@ -19,6 +21,19 @@ public class User{
         this.email = uemail; 
         this.password = pwd; 
     }
+
+    //retrieving an account from database
+    public User(String Username, String Password){
+        this.username = Username.toCharArray();
+        this.password = Password.toCharArray();
+    }
+
+    public User(String Username){
+        this.username = Username.toCharArray();
+     
+    }
+
+
 
     //setters and getters
     public char[] getFirstname() {
