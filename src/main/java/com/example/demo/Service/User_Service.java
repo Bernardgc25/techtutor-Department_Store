@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 public class User_Service implements User_Service_Interface{
     //user input 
-    char[] firstName, lastName; 
-    char[] userName, useremail, password;
+    String firstName, lastName; 
+    String un, useremail, pwd;
 
     Scanner scanner;
     
@@ -175,60 +175,43 @@ public class User_Service implements User_Service_Interface{
     public void Admin_login() {
         //validate admin credentials 
         optionMenu adMenu = new optionMenu(); 
-
+      
         
         System.out.print("Enter username: ");
-        userName = scanner.next().toCharArray();
+        un = scanner.next();
         scanner.nextLine();
-
-        //testuserN = ad.getUsername();
     
         System.out.print("Enter password: ");
-        password= scanner.next().toCharArray();
+        pwd = scanner.nextLine();
         scanner.nextLine();
-
-        //testpwd = ad.getPassword();
-
+      
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
 
-    
-        boolean isvalid = true; 
+        //validate user credentials          
+        Admin adminValidated = adao.validate(un,pwd);
 
-        //validate user credentials 
-        //adao
-          
-          
-     
-
-
-
-
-
-        /* 
-        while(isvalid){
-            //validate records from database
-            isvalid = admL.validate(userName, password);
-
-            //login succesful, 
-            if(isvalid == true){
-                isvalid = false; 
+            if (adminValidated != null){
+                System.out.println("Login in Succesful");
             }
-            //not succesful, prompt user to try again 
-            else{
-              
-            }  
-
-            char choice = '\0';
-            System.out.println("press a character and Enter to continue");
+            //admin user not on database 
+            else   {
+                System.out.println("Incorrect Username or Password, Login in Unsuccesfull");
+                System.out.println(adminValidated);
+         
+            }
                 
-            choice = scanner.next().charAt(0);
+          
+       
+                System.out.println("press a character and Enter to continue");
+    
+                char choice = scanner.next().charAt(0);
+
+                choice = scanner.next().charAt(0);
                 if((choice == 'c') || (choice == 'C')){
-                System.out.println("Back to Option Menu");
-                } 
-        }
-        */
-        
+                    System.out.println("Back to Option Menu");
+                   
+                }
 
 
 
@@ -258,14 +241,14 @@ public class User_Service implements User_Service_Interface{
         optionMenu cu = new optionMenu();
 
         System.out.print("Enter username: ");
-        userName = scanner.next().toCharArray();
-        scanner.nextLine();
+        //userName = scanner.next().toCharArray();
+       // scanner.nextLine();
 
         //testuserN = ad.getUsername();
 
         System.out.print("Enter password: ");
-        password= scanner.next().toCharArray();
-        scanner.nextLine();
+       // password= scanner.next().toCharArray();
+        //scanner.nextLine();
 
         //testpwd = ad.getPassword();
 
