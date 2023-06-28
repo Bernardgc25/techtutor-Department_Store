@@ -176,14 +176,11 @@ public class User_Service implements User_Service_Interface{
         //validate admin credentials 
         optionMenu adMenu = new optionMenu(); 
       
-
         System.out.print("Enter username: ");
         un = scanner.next().toCharArray();
-        //un = scanner.nextLine();
-        
+
         System.out.print("Enter password: ");
         pwd = scanner.next().toCharArray();
-        //pwd = scanner.nextLine();
         
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
@@ -191,44 +188,41 @@ public class User_Service implements User_Service_Interface{
         //validate user credentials          
         Admin adminValidated = adao.validate(un,pwd);
 
-            //username and password exist in database
+            //username and password does not exist in database
             if (adminValidated == null){
-                System.out.println("Incorrect Username or Password");
-                        
+                System.out.println("Incorrect Username or Password");    
+                
+                //ask user again
+                System.out.println("press a character and Enter to continue");
+                char choice = scanner.next().charAt(0);
+                if((choice == 'c') || (choice == 'C')){
+                    System.out.println("Back to Option Menu");
+                }
+
             }
-            //username and password doesn not exist in database
+            //username and password exist in database
             else {
-                System.out.println("Login in Successful");
-                      
+                System.out.println("Login in Successful");   
+                
+                
+            //menu option for administrator
+            int adMenu_Value; 
+            int opt = 0; 
+
+                //admin option 
+                boolean notdone = true; 
+                    while(notdone){
+                    adMenu_Value =  adMenu.adminMenu(opt);
+
+                        if (adMenu_Value == 0 ){
+                            notdone = false; 
+                        }    
+                        //clearscreen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();          
+                    }
             }
                 
-          
-       
-            System.out.println("press a character and Enter to continue");
-            char choice = scanner.next().charAt(0);
-            if((choice == 'c') || (choice == 'C')){
-                System.out.println("Back to Option Menu");
-                   
-            }
-
-
-        //menu option for administrator
-        int adMenu_Value; 
-        int opt = 0; 
-
-        //code here
-        //invoke admin option (option Menu.java) 
-        boolean notdone = true; 
-            while(notdone){
-            adMenu_Value =  adMenu.adminMenu(opt);
-
-                if (adMenu_Value == 0 ){
-                    notdone = false; 
-                }    
-                //clearscreen
-                System.out.print("\033[H\033[2J");  
-		        System.out.flush();          
-            }
     }
 
     @Override
