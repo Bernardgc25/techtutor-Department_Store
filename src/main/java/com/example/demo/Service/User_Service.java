@@ -18,8 +18,8 @@ public class User_Service implements User_Service_Interface{
 
     Scanner scanner;
     
-    AdminList_Service admL; 
-    CustomerList_Service custL; 
+    //AdminList_Service admL; 
+    //CustomerList_Service custL; 
     
     AdminDAO adao;
     
@@ -27,11 +27,11 @@ public class User_Service implements User_Service_Interface{
     public User_Service()
     {
         scanner = new Scanner(System.in);
-        admL = new AdminList_Service();
+        //admL = new AdminList_Service();
         adao = new AdminDAO(); 
 
 
-        custL = new CustomerList_Service();
+        //custL = new CustomerList_Service();
     }
                         
 
@@ -137,7 +137,7 @@ public class User_Service implements User_Service_Interface{
                         cu.setPassword(scanner.next().toCharArray());
 
                         //add to customerlist invoke CustomerDAO
-                        custL.insertCustomer(cu);
+                        //custL.insertCustomer(cu);
                 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();

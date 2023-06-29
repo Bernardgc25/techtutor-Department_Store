@@ -16,6 +16,11 @@ show mysql users:					SELECT user FROM mysql.user;
 create new user:					CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 grant priveleges 					GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
 
+
+--clear console
+ctrl + L
+
+--create a table 
 CREATE TABLE Admin (
     FirstName varchar(255),
     LastName varchar(255),
@@ -24,5 +29,27 @@ CREATE TABLE Admin (
     Password varchar(255)
 );
 
+CREATE TABLE Product (
+    productID int(4) NOT NULL,
+    productName varchar(255) NOT NULL,
+    availQty    int,
+    sellingPrice DOUBLE(5,2),
+    PRIMARY KEY (productID)
+);
 
+--delete a table 
+DROP TABLE Product;
+
+--insert into table
 insert into Admin values('Bernard', 'GoleCruz', 'Bernard_gcruz@yahoo.com', 'uname', 'pwd');
+
+insert into Product values(0001, 'Shampoo', 3, 5.00);
+
+--delete from table
+DELETE FROM Product  WHERE productId = 1;
+
+--show fields of table
+show fields from Product;
+
+--display detail of table
+select from * Product; 

@@ -1,5 +1,7 @@
 package com.example.demo.Service;
 
+import com.example.demo.DAO.AdminDAO;
+import com.example.demo.DAO.StoreDAO;
 import com.example.demo.Model.Product;
 import com.example.demo.Service_Interface.Store_Service_Interface;
 
@@ -18,15 +20,18 @@ public class Store_Service implements Store_Service_Interface{
 
     
     HashMap<Integer, Product> listOfproduct = new HashMap<>();
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner;
     Product newproduct = new Product();
     char choice = '\0';
     Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
     ArrayList<Double> expenses = new ArrayList<Double>();
 
+        StoreDAO sdao;
+        
     //constructor
     public Store_Service(){
-        
+        scanner = new Scanner(System.in);
+        sdao = new StoreDAO();
     }
 
     @Override
@@ -233,30 +238,39 @@ public class Store_Service implements Store_Service_Interface{
             
             
             try {
-                Object prodId = scanner.nextInt();
-                
-                //search by productId
-                //newproduct = listOfproduct.get(productId);
+                //Object prodId = scanner.nextInt();
+                int prodId = scanner.nextInt();
 
-                if (listOfproduct.containsValue(prodId)){
-                    System.out.println("productId exist...");
-                    System.out.println("");
+                //search product id database
+                Product sp = sdao.searchProdId(prodId);
 
-                    //display 
-                    System.out.println("list of products:"); 
-                    for(Map.Entry<Integer, Product> p:pset)
-                    {
-                    //System.out.println(":Key is "+p.getKey());
-                    Product pobj=p.getValue();
-                    System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
-                    + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
-                    }
-                    
-                } 
-                else {
-                    System.out.println("productId do not exist!!!");
-                
+                //product Id does not exist in database
+                if (sp == null){
+                    System.out.println("Product Id does not exist");    
+
+                    //ask user again
+                    System.out.println("press a character and Enter to continue");
+                    char choice = scanner.next().charAt(0);
+
+                    //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
+                        // if((choice == 'c') || (choice == 'C')){
+                        //System.out.println("Back to Option Menu");
+                   // }
+            
                 }
+                //product Id found
+                //display info
+                else {
+                    System.out.println("Product Id located");   
+                 
+                    System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
+                    + " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
+                }        
+                /*
+                 * 
+                */       
 
             } catch (InputMismatchException e) {
                 //clear screen

@@ -14,12 +14,12 @@ public class User{
     }
 
     //posting a new account to database
-    public User(char[] fname, char[] lname, char[] uname,  char[] uemail, char[]pwd){
-        this.firstname = fname; 
-        this.lastname = lname;
-        this.username = uname; 
-        this.email = uemail; 
-        this.password = pwd; 
+    public User(char[] firstname, char[] lastname, char[] username,  char[] email, char[] password){
+        this.firstname = firstname; 
+        this.lastname = lastname;
+        this.username = username; 
+        this.email = email; 
+        this.password = password; 
     }
 
     //retrieving an account from database

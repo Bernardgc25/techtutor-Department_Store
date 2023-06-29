@@ -9,10 +9,10 @@ public class Item{
 
     }
     
-    public Item(String ItemN, String Ctgy, double buyingP){
-        this.Itemname = ItemN; 
-        this.Category = Ctgy; 
-        this.buyingPrice = buyingP; 
+    public Item(String Itemname, String Category, double buyingPrice){
+        this.Itemname = Itemname; 
+        this.Category = Category; 
+        this.buyingPrice = buyingPrice; 
     }
 
     //setters and getters

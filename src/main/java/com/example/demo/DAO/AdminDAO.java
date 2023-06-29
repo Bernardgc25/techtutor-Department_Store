@@ -41,7 +41,7 @@ public class AdminDAO {
     }
 
         
-        //retrieve username from accounts table
+        //retrieve username and password from database
         public Admin validate(char[] un, char[] pwd){
         
     

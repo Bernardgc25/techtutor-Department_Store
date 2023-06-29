@@ -9,15 +9,16 @@ public class Customer extends User{
         superCoins = 100;
     }
 
-    public Customer(char[] fname, char[] lname, char[] uname,  char[] uemail, char[]pwd){
-        super(fname, lname, uname, uemail, pwd);
-        
-         
+
+
+    public Customer(char[] firstname, char[] lastname, char[] username,  char[] email, char[] password){
+        super(firstname, lastname, username, email, password);
+           
     }
 
     //retrieving an account from database
-    public Customer(String Username, String Password){
-        super(Username, Password);
+    public Customer(String username, String password){
+        super(username, password);
 
     }
 }
