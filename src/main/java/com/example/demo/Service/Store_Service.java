@@ -79,8 +79,16 @@ public class Store_Service implements Store_Service_Interface{
                 {
                     //System.out.println(":Key is "+p.getKey());
                     Product pobj=p.getValue();
-                    System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
-                        + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+                    //System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
+                    //    + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
+                   /* 
+                    System.out.println("Product Id:" + pobj.getProductName());
+                    System.out.println("Product Name: " +pobj.getProductName()); 
+                    System.out.println("Category: " +pobj.getCategory());
+                    System.out.println("Quantity: " +pobj.getAvailableQuantity());
+                    System.out.println("Price: " +pobj.getSellingPrice());
+                    */
+               
                 }
                     
                 System.out.println("");
@@ -152,13 +160,13 @@ public class Store_Service implements Store_Service_Interface{
         else{
             //display
             System.out.println("list of products:"); 
-            for(Map.Entry<Integer, Product> p:pset)
-                {
-                //System.out.println(":Key is "+p.getKey());
-                Product pobj=p.getValue();
-                System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
-                + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
-                }
+
+            //retrieve from database 
+            Product sp = sdao.displayallProducts();
+            //display all products, hashmap 
+
+
+            
         }
             //return to option menu
             System.out.println("");
@@ -271,12 +279,15 @@ public class Store_Service implements Store_Service_Interface{
                      //clear screen
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
-                    System.out.println("Product Id located");   
+                    //System.out.println("Product Id located");   
                  
-                    System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
-                    + " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
-
-                    System.out.println("");
+                    //System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
+                    //+ " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
+                    System.out.println("Product Id:" + sp.getProductId());
+                    System.out.println("Product Name: " +sp.getProductName()); 
+                    System.out.println("Quantity: " +sp.getAvailableQuantity());
+                    System.out.println("Price: " +sp.getSellingPrice());
+               
                     System.out.println("");
                 }        
                 /*
@@ -296,7 +307,7 @@ public class Store_Service implements Store_Service_Interface{
                 while(wrongcharacter){
                     //prompt user to search again
                     System.out.println("");
-                    System.out.println("(S) search for product Name");
+                    System.out.println("(S) search for product Id");
                     System.out.println("(M) go back to menu: ");
                     System.out.println("");
                     System.out.print("Enter a choice: ");
@@ -371,13 +382,19 @@ public class Store_Service implements Store_Service_Interface{
                      //clear screen
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
-                    System.out.println("Product Name located");  
+                    //System.out.println("Product Name located");  
                      
                  
-                    System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
-                    + " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
+                    //System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
+                    //+ " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
+                    
+                    System.out.println("Product Id:" + sp.getProductId());
+                    System.out.println("Product Name: " +sp.getProductName()); 
+                    System.out.println("Quantity: " +sp.getAvailableQuantity());
+                    System.out.println("Price: " +sp.getSellingPrice());
 
-                    System.out.println("");
+
+                    //System.out.println("");
                     System.out.println("");
                     
                     //System.out.print("Product Id        Product Name        Qty         Price");
