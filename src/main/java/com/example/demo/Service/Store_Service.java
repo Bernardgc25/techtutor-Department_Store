@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import java.lang.*;
 import com.example.demo.DAO.AdminDAO;
 import com.example.demo.DAO.StoreDAO;
 import com.example.demo.Model.Product;
@@ -234,7 +235,7 @@ public class Store_Service implements Store_Service_Interface{
             System.out.flush();
 
             System.out.print("Enter productId to search: ");
-            //productId = scanner.nextInt();
+     
             
             
             try {
@@ -246,11 +247,15 @@ public class Store_Service implements Store_Service_Interface{
 
                 //product Id does not exist in database
                 if (sp == null){
+                     //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
+                    
                     System.out.println("Product Id does not exist");    
 
                     //ask user again
                     System.out.println("press a character and Enter to continue");
-                    char choice = scanner.next().charAt(0);
+                    choice = scanner.next().charAt(0);
 
                     //clear screen
                     System.out.print("\033[H\033[2J");  
@@ -263,10 +268,16 @@ public class Store_Service implements Store_Service_Interface{
                 //product Id found
                 //display info
                 else {
+                     //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
                     System.out.println("Product Id located");   
                  
                     System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
                     + " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
+
+                    System.out.println("");
+                    System.out.println("");
                 }        
                 /*
                  * 
@@ -279,27 +290,47 @@ public class Store_Service implements Store_Service_Interface{
                 
                 System.out.println("Invalid input, integer only");
             }
-                //prompt user to search again
-                System.out.println("");
-                System.out.println("(S) search for productId");
-                System.out.println("(M) go back to menu: ");
-                System.out.println("");
-                System.out.print("Enter a choice: ");
-                choice = scanner.next().charAt(0);
-                if(choice == 'm' || choice == 'M'){
-                    searchnotDone = false; 
-                }
-                else if (choice == 's' || choice == 'S'){
-                    searchnotDone = true;
-                }
-            
+               
+                //only accepts s or m
+                boolean wrongcharacter = true;  
+                while(wrongcharacter){
+                    //prompt user to search again
+                    System.out.println("");
+                    System.out.println("(S) search for product Name");
+                    System.out.println("(M) go back to menu: ");
+                    System.out.println("");
+                    System.out.print("Enter a choice: ");
+
+                    choice = scanner.next().charAt(0);
+                    Character m = 'm';
+                    Character M = 'M';
+                    Character s = 's';
+                    Character S = 'S';
+                
+                    if (m.equals(choice) || M.equals(choice)){
+                        searchnotDone = false; 
+                        wrongcharacter = false; 
+                    }
+                    else if (s.equals(choice) || S.equals(choice)) {
+                        searchnotDone = true;
+                        wrongcharacter = false; 
+                    }
+                    else{
+                         //clear screen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        
+                        System.out.println("Invalid Character !");
+                        wrongcharacter = true; 
+                    }
+                }                    
+            ///////
         }     
     }
 
     @Override
     public void searchbyProductName() {
 
-        Object pName; 
         boolean searchnotDone = true;
         
         while(searchnotDone){
@@ -308,43 +339,105 @@ public class Store_Service implements Store_Service_Interface{
             System.out.flush();
 
             System.out.print("Enter product Name to search: ");
-            //productId = scanner.nextInt();
-            pName = scanner.next();
+     
             
-            System.out.print("");
-            //search by productName
-            if (listOfproduct.containsValue(pName)){
-                System.out.println("product Name exist...");
-                System.out.println("");
+            try {
+                //Object prodId = scanner.nextInt();
+                String productName = scanner.next();
 
-                
-                //display 
-                System.out.println("list of products:"); 
-                for(Map.Entry<Integer, Product> p:pset){
-                //System.out.println(":Key is "+p.getKey());
-                Product pobj=p.getValue();
-                System.out.println("Product Name: " +pobj.getProductName() + "Product Id:" +pobj.getProductId() +"Quantity: " 
-                +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
-                }
-            }
-        
-            else {
-                System.out.println("product Name do not exist!!!");
-            } 
+                //search product id database
+                Product sp = sdao.searchProductName(productName);
+
+                //product Id does not exist in database
+                if (sp == null){
+                     //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
+                    
+                    System.out.println("Product Name does not exist");    
+
+                    //ask user again
+                    System.out.println("press a character and Enter to continue");
+                    choice = scanner.next().charAt(0);
+
+                    //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
             
-                System.out.println("");
-                System.out.println("(S) search for product Name");
-                System.out.println("(M) go back to menu: ");
-                System.out.println("");
-                System.out.print("Enter a choice: ");
-                choice = scanner.next().charAt(0);
-                if(choice == 'm' || choice == 'M'){
-                    searchnotDone = false; 
                 }
-                else if (choice == 's' || choice == 'S'){
-                    searchnotDone = true;
+                //product Id found
+                //display info
+                else {
+                     //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
+                    System.out.println("Product Name located");  
+                     
+                 
+                    System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
+                    + " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
+
+                    System.out.println("");
+                    System.out.println("");
+                    
+                    //System.out.print("Product Id        Product Name        Qty         Price");
+                    //String strId = String.format("%0d", sp.getProductId());
+                    //System.out.println(strId);
+                }        
+                /*
+                 * 
+                */       
+
+            } catch (InputMismatchException e) {
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                
+                System.out.println("Invalid input");
+            }
+
+                //only accepts s or m
+                boolean wrongcharacter = true;  
+                while(wrongcharacter){
+                    //prompt user to search again
+                    System.out.println("");
+                    System.out.println("(S) search for product Name");
+                    System.out.println("(M) go back to menu: ");
+                    System.out.println("");
+                    System.out.print("Enter a choice: ");
+
+                    choice = scanner.next().charAt(0);
+                    Character m = 'm';
+                    Character M = 'M';
+                    Character s = 's';
+                    Character S = 'S';
+                
+                    if (m.equals(choice) || M.equals(choice)){
+                        searchnotDone = false; 
+                        wrongcharacter = false; 
+                    }
+                    else if (s.equals(choice) || S.equals(choice)) {
+                        searchnotDone = true;
+                        wrongcharacter = false; 
+                    }
+                    else{
+                         //clear screen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        
+                        System.out.println("Invalid Character !");
+                        wrongcharacter = true; 
+                    }
                 }
+                
+       
+                    
+              
+            
         }     
+
+     
+          
     }
 
     @Override
