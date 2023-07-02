@@ -182,7 +182,7 @@ public class Store_Service implements Store_Service_Interface{
                     //System.out.print(+p.getKey());
                     Product pobj = p.getValue();
              
-                    System.out.printf("%-20d %-22s %-15d %- 20f\n", +p.getKey(), pobj.getProductName(), pobj.getAvailableQuantity(), pobj.getSellingPrice());
+                    System.out.printf("%-20d %-22s %-15d %.2f\n", +p.getKey(), pobj.getProductName(), pobj.getAvailableQuantity(), pobj.getSellingPrice());
                     //System.out.println("");
                 }
                
@@ -322,7 +322,7 @@ public class Store_Service implements Store_Service_Interface{
             for(Map.Entry<String, Item> i: iset){
                 Item iobj = i.getValue();
 
-                System.out.printf("%-20s %-22s %-15s \n", iobj.getItemname(), iobj.getCategory(), iobj.getBuyingPrice()); 
+                System.out.printf("%-20s %-22s %.2f \n", iobj.getItemname(), iobj.getCategory(), iobj.getBuyingPrice()); 
                 //System.out.println("");
             
             }

@@ -37,7 +37,7 @@ CREATE TABLE Product (
     productID int(4) NOT NULL,
     productName varchar(255) NOT NULL,
     availQty    int,
-    sellingPrice DECIMAL(5,2) NOT NULL,
+    buyingPrice DECIMAL(5,2) NOT NULL,
     PRIMARY KEY (productID)
 );
 
