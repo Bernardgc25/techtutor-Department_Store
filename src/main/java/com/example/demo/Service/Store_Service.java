@@ -152,17 +152,21 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void dispsallProduct() {
-        //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
-    
+        Map<Integer, Product> map_product = new HashMap<Integer, Product>();
+       
+          
+        //invoke serviceDAO
+        map_product = sdao.displayallProducts();
+        
+        boolean notDone = true;
+        //////
         //clear screen
         System.out.print("\033[H\033[2J");  
-        System.out.flush();
+        System.out.flush();   
 
-            Map<Integer, Product> map_product = new HashMap<Integer, Product>();
-          
-            //invoke serviceDAO
-            map_product = sdao.displayallProducts();
         
+        while(notDone){
+            
             if(map_product.isEmpty()){
                 System.out.println("list is empty!! ");
             }
@@ -172,36 +176,68 @@ public class Store_Service implements Store_Service_Interface{
 
                 //display all products, 
                 ////////////////////////////
-                Formatter fmt = new Formatter();  
-                fmt.format("%15s %15s %15s %15s\n", "productID", "productName", "Qty", "sellingPrice");  
-        
+                //Formatter fmt = new Formatter();  
+                System.out.printf("%-20s %-22s %-15s %-20s\n", "productID", "productName", "Qty", "sellingPrice");  
+               
+
+               
                 //iterate over by value hashmap 
                 Set<Map.Entry<Integer, Product>> pset = map_product.entrySet();
-            
                 for(Map.Entry<Integer, Product> p: pset){
-                    
-                    System.out.print(+p.getKey());
+                    //System.out.print(+p.getKey());
                     Product pobj = p.getValue();
+                    
+                    //System.out.println(+p.getKey() + " " + pobj.getProductName() + " " 
+                    //            + pobj.getAvailableQuantity() + " " + pobj.getSellingPrice());       
+                    //fmt.format("%14s %15s %15s %15s\n" +p.getKey() + pobj.getProductName() + pobj.getAvailableQuantity() + pobj.getSellingPrice()); 
+                    
+                    System.out.printf("%-20d %-22s %-15d %- 20f\n", +p.getKey(), pobj.getProductName(), pobj.getAvailableQuantity(), pobj.getSellingPrice());
+                    /* 
+                    System.out.print("      ");
+                    System.out.printf("%-15d", +p.getKey());
+                    System.out.print("      ");
+                    System.out.printf("%-15s", pobj.getProductName());
+                    //System.out.print("      ");
+                    //System.out.printf("%-1d", pobj.getAvailableQuantity());
+                    //System.out.print("      ");
+                    System.out.printf("%-1f", pobj.getSellingPrice());
+                    */
 
-                    System.out.println(" " + pobj.getItemname() + " " 
-                                + pobj.getAvailableQuantity() + " " + pobj.getSellingPrice());       
+                    System.out.println("");
                 }
+               
             }
           
-            //return to option menu
-            System.out.println("");
-            System.out.print("(M) go back to menu: ");
-            choice = scanner.next().charAt(0);
+                //only accepts m
+                boolean wrongcharacter = true;  
+                while(wrongcharacter){
+                    //prompt user to search again
+                    System.out.println("");
+                    System.out.println("(M) go back to menu: ");
+                    System.out.println("");
+                    System.out.print("Enter a choice: ");
 
-            System.out.println("");
-            if(choice == 'm' || choice == 'M'){
-                return; 
-            }    
-     
-        
+                    choice = scanner.next().charAt(0);
+                    Character m = 'm';
+                    Character M = 'M';
+                
+                    if (m.equals(choice) || M.equals(choice)){
+                        notDone = false;
+                        wrongcharacter = false; 
+                    }
+                    else{
+                         //clear screen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        
+                        System.out.println("Invalid Character !");
+                        wrongcharacter = true; 
+                    }
+                }
+        }
 
-        
-}
+        /////
+    }
 
     @Override
     public void displaybyCategory() {
