@@ -1,9 +1,9 @@
 package com.example.demo.Service;
 
 import java.lang.*;
-import java.util.Formatter; 
 import com.example.demo.DAO.AdminDAO;
 import com.example.demo.DAO.StoreDAO;
+import com.example.demo.Model.Item;
 import com.example.demo.Model.Product;
 import com.example.demo.Service_Interface.Store_Service_Interface;
 
@@ -154,7 +154,6 @@ public class Store_Service implements Store_Service_Interface{
     public void dispsallProduct() {
         Map<Integer, Product> map_product = new HashMap<Integer, Product>();
        
-          
         //invoke serviceDAO
         map_product = sdao.displayallProducts();
         
@@ -171,39 +170,20 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.println("list is empty!! ");
             }
             else{
-                      //display
-                System.out.println("list of products:"); 
+                //display all products in table format
+                //System.out.println("list of products:"); 
 
-                //display all products, 
-                ////////////////////////////
-                //Formatter fmt = new Formatter();  
-                System.out.printf("%-20s %-22s %-15s %-20s\n", "productID", "productName", "Qty", "sellingPrice");  
-               
+                System.out.printf("%-20s %-22s %-15s %-20s\n", "Product id", "Product Name", "Qty", "Selling Price");  
+                System.out.println("");
 
-               
                 //iterate over by value hashmap 
                 Set<Map.Entry<Integer, Product>> pset = map_product.entrySet();
                 for(Map.Entry<Integer, Product> p: pset){
                     //System.out.print(+p.getKey());
                     Product pobj = p.getValue();
-                    
-                    //System.out.println(+p.getKey() + " " + pobj.getProductName() + " " 
-                    //            + pobj.getAvailableQuantity() + " " + pobj.getSellingPrice());       
-                    //fmt.format("%14s %15s %15s %15s\n" +p.getKey() + pobj.getProductName() + pobj.getAvailableQuantity() + pobj.getSellingPrice()); 
-                    
+             
                     System.out.printf("%-20d %-22s %-15d %- 20f\n", +p.getKey(), pobj.getProductName(), pobj.getAvailableQuantity(), pobj.getSellingPrice());
-                    /* 
-                    System.out.print("      ");
-                    System.out.printf("%-15d", +p.getKey());
-                    System.out.print("      ");
-                    System.out.printf("%-15s", pobj.getProductName());
-                    //System.out.print("      ");
-                    //System.out.printf("%-1d", pobj.getAvailableQuantity());
-                    //System.out.print("      ");
-                    System.out.printf("%-1f", pobj.getSellingPrice());
-                    */
-
-                    System.out.println("");
+                    //System.out.println("");
                 }
                
             }
@@ -213,9 +193,9 @@ public class Store_Service implements Store_Service_Interface{
                 while(wrongcharacter){
                     //prompt user to search again
                     System.out.println("");
-                    System.out.println("(M) go back to menu: ");
-                    System.out.println("");
-                    System.out.print("Enter a choice: ");
+                    System.out.print("(M) go back to menu: ");
+                    //System.out.println("");
+                    //System.out.print("Enter a choice: ");
 
                     choice = scanner.next().charAt(0);
                     Character m = 'm';
@@ -241,45 +221,146 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void displaybyCategory() {
-    	//Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
+    	Map<String, Item> map_item = new HashMap<>();
+        /*logic option starts here*/ 
+        String category = " ";
+        int opt; 
+
+        //prompt user for category
+        /*logic option starts here*/ 
+        boolean choicenotDone = true;
+        while(choicenotDone){
+            //clear screen
+            System.out.print("\033[H\033[2J");  
+            System.out.flush();
+
+            //System.out.println("Choose your option: ");
+            System.out.println("Category list");
+            System.out.println("1 - Display by Grocery");
+            System.out.println("2 - Display by Stationary");  
+            System.out.println("3 - Display by Toiletry");
+            System.out.println("4 - Display by Vegetables");
+                
+            System.out.println("");
+            System.out.print("Enter a choice: ");
+            try {
+                opt = scanner.nextInt();
+
+                switch (opt){
+                    //Display by Grocery
+                    case 1: 
+                        category = "Grocery";
+                        choicenotDone = false; 
+                        break;
+                    //Display by Stationary
+                    case 2:  
+                        category = "Stationary";
+                        choicenotDone = false;
+                        break;
+                    //Display by Toiletry
+                    case 3:
+                        category = "Toiletry";
+                        choicenotDone = false;    
+                        break;
+                    //Display by Vegetables
+                    case 4:
+                        category = "Vegetables";
+                        choicenotDone = false;   
+                        break;           
+
+                    default: 
+                        choicenotDone = true; 
+                       
+                    }       
+            
+                    
+            } 
+            
+            //wrong input, choose only 0-4
+            catch (InputMismatchException e) {
+                 
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                     
+                System.out.println("Invalid input");
+                System.out.println("press a character and Enter to continue");
         
+                char choice = scanner.next().charAt(0);
+                    if((choice == 'c') || (choice == 'C')){
+                        System.out.println("Back to Option Menu");
+                        choicenotDone = true; 
+                    }
+                   
+            }         
+                
+        }
+        
+
+        /*Display category logic end here*/
+        
+        
+        //invoke DAO
+        map_item = sdao.displaybyCategory(category);
+
         //clear screen
         System.out.print("\033[H\033[2J");  
-        System.out.flush();
-    
-        //display by category
-        System.out.println("Display products by Category:"); 
-    
-        if(listOfproduct.isEmpty()){
-            System.out.println("list is empty!! ");
-        }
-        else{
+        System.out.flush();   
         
+        
+        boolean notDone = true;
+        while(notDone){
+            //System.out.println("list is NOT EMPTY!! ");
+              
+            //display all products in table format
+            System.out.printf("%-20s %-22s %-15s \n", "Item Name ", "Category", "Buying Price");  
+            System.out.println("");      
+             
+            //iterate over by value hashmap 
+            //Map<String, Item> map_item = new HashMap<>();
+            Set<Map.Entry<String, Item>> iset = map_item.entrySet();
+            for(Map.Entry<String, Item> i: iset){
+                Item iobj = i.getValue();
 
-
-
-
-            /* 
-             for(Map.Entry<Integer, Product> p:pset){
-            //System.out.println(":Key is "+p.getKey());
-            Product pobj=p.getValue();
-            System.out.println("Category: " +pobj.getCategory() + "Product Id:" +pobj.getProductName() + "Product Name: " 
-            +pobj.getProductName() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
-            } 
-            */
+                System.out.printf("%-20s %-22s %-15s \n", iobj.getItemname(), iobj.getCategory(), iobj.getBuyingPrice()); 
+                //System.out.println("");
             
+            }
         
-        }
-        
-            //return to option menu
-            System.out.println("");
-            System.out.print("(M) go back to menu: ");
-            choice = scanner.next().charAt(0);
+               
+            
+          
+                //only accepts m
+                boolean wrongcharacter = true;  
+                while(wrongcharacter){
+                    //prompt user to search again
+                    System.out.println("");
+                    System.out.print("(M) go back to menu: ");
+                    //System.out.println("");
+                    //System.out.print("Enter a choice: ");
 
-            System.out.println("");
-            if(choice == 'm' || choice == 'M'){
-                return; 
-            }    
+                    choice = scanner.next().charAt(0);
+                    Character m = 'm';
+                    Character M = 'M';
+                
+                    if (m.equals(choice) || M.equals(choice)){
+                        notDone = false;
+                        wrongcharacter = false; 
+                    }
+                    else{
+                         //clear screen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        
+                        System.out.println("Invalid Character !");
+                        wrongcharacter = true; 
+                    }
+                }
+        }
+         /*Display category logic ends here*/
+
+      
+       
     }
 
     @Override

@@ -3,10 +3,14 @@ package com.example.demo.DAO;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 
 import com.example.demo.Util.DataConnect;
+import com.example.demo.Model.Item;
 import com.example.demo.Model.Product;
+
+import java.util.Scanner;
 
 //this class will access database Store
 public class StoreDAO {
@@ -17,6 +21,7 @@ public class StoreDAO {
        
     }
 
+    Scanner scanner = new Scanner(System.in);
 
     //display all products, hashamp return method 
     public HashMap<Integer, Product>displayallProducts(){
@@ -39,6 +44,7 @@ public class StoreDAO {
                 p = new Product(productId, productName, availQty, sellingPrice);
                 
                 //place data in hashmap
+                //key value productId
                 map_product.put(productId, p);
                    
             }
@@ -52,6 +58,43 @@ public class StoreDAO {
             return null;
          
     }
+
+    //display item by category, hashamp return method 
+    public HashMap<String, Item>displaybyCategory(String category){
+        HashMap<String, Item> map_item = new HashMap<>();
+        Item i; 
+    
+        try {
+            String sql = "select * from  Item where Category = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            //database query 
+            ps.setString(1, category);
+  
+            ResultSet rs = ps.executeQuery(); 
+                  
+            while( rs.next() ){
+                String ItemName = rs.getString("ItemName"); 
+                String Category = rs.getString("Category");
+                double buyingPrice = rs.getDouble("buyingPrice");; 
+
+                i = new Item(ItemName, Category, buyingPrice);
+                //key value itemName
+                map_item.put(ItemName, i);
+          
+            }
+            return map_item;
+                        
+        }
+        catch (SQLException e) {
+               System.out.println(e.getMessage());
+        }
+            
+            return null;
+         
+    }
+
+
 
 
     //retrieve product by productID
@@ -68,22 +111,13 @@ public class StoreDAO {
                   
             while( rs.next() ){
                 return new Product(rs.getInt("productId"), rs.getString("productName"), 
-                                rs.getInt("availQty"),rs.getDouble("sellingPrice")); 
-            
-                //return new Product(rs.getInt("productId"));           
-           
-            }
-        
-
-                
-                
+                                rs.getInt("availQty"),rs.getDouble("sellingPrice"));          
+            }               
         }
         catch (SQLException e) {
                System.out.println(e.getMessage());
-        }
-            
-            return null;
-         
+        }       
+            return null;     
     }
 
     //retrieve product by productName
@@ -101,19 +135,14 @@ public class StoreDAO {
             while( rs.next() ){
                 return new Product(rs.getInt("productId"), rs.getString("productName"), 
                                 rs.getInt("availQty"),rs.getDouble("sellingPrice"));     
-           
             }
-        
-
-                
-                
+   
         }
         catch (SQLException e) {
                System.out.println(e.getMessage());
         }
             
-            return null;
-         
+            return null; 
     }
 
 
