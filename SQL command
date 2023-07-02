@@ -98,10 +98,6 @@ DROP TABLE Product;
 DROP TABLE Item;
 show tables; 
 
-
-
-
-
 --delete from table
 DELETE FROM Product  WHERE productId = 1;
 
@@ -111,3 +107,9 @@ show fields from Product;
 --display detail of table
 select * from  Item; 
 select * from  Product; 
+
+--select by category 
+select * from  Item where Category = 'Grocery';
+select * from  Item where Category = 'Toiletry ';
+select * from  Item where Category = 'Vegetables';
+select * from  Item where Category = 'Stationary';

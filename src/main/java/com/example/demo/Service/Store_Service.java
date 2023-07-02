@@ -6,7 +6,7 @@ import com.example.demo.DAO.StoreDAO;
 import com.example.demo.Model.Item;
 import com.example.demo.Model.Product;
 import com.example.demo.Service_Interface.Store_Service_Interface;
-
+ 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -426,16 +426,16 @@ public class Store_Service implements Store_Service_Interface{
                      //clear screen
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
-                    //System.out.println("Product Id located");   
-                 
-                    //System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
-                    //+ " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
-                    System.out.println("Product Id:" + sp.getProductId());
-                    System.out.println("Product Name: " +sp.getProductName()); 
-                    System.out.println("Quantity: " +sp.getAvailableQuantity());
-                    System.out.println("Price: " +sp.getSellingPrice());
-               
+             
+                    //display in table format, and 2 decimal places
+                    System.out.printf("%-20s %-22s %-15s %-20s %-20s \n", "Product id", "Product Name", "Qty", "Buying Price", "Selling Price");  
                     System.out.println("");
+                    
+                     
+                    System.out.printf("%-20d %-22s %-15d %-20.2f %-20.2f \n",  sp.getProductId(),  sp.getProductName(), 
+                                    sp.getAvailableQuantity(), sp.getBuyingPrice(),  sp.getSellingPrice());
+                    
+                   
                 }        
                 /*
                  * 
@@ -529,29 +529,19 @@ public class Store_Service implements Store_Service_Interface{
                      //clear screen
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
-                    //System.out.println("Product Name located");  
                      
-                 
-                    //System.out.println("Product Id: " +sp.getProductId() + " Product Name: " +sp.getProductName() 
-                    //+ " Qty: " +sp.getAvailableQuantity() + " Price: " +sp.getSellingPrice());
-                    
-                    System.out.println("Product Id:" + sp.getProductId());
-                    System.out.println("Product Name: " +sp.getProductName()); 
-                    System.out.println("Quantity: " +sp.getAvailableQuantity());
-                    System.out.println("Price: " +sp.getSellingPrice());
-
-
-                    //System.out.println("");
+                    System.out.printf("%-20s %-22s %-15s %-20s %-20s \n", "Product id", "Product Name", "Qty", "Buying Price", "Selling Price");  
                     System.out.println("");
                     
-                    //System.out.print("Product Id        Product Name        Qty         Price");
-                    //String strId = String.format("%0d", sp.getProductId());
-                    //System.out.println(strId);
+                     
+                    System.out.printf("%-20d %-22s %-15d %-20.2f %-20.2f \n",  sp.getProductId(),  sp.getProductName(), 
+                                    sp.getAvailableQuantity(), sp.getBuyingPrice(),  sp.getSellingPrice());
+                    
+            
+                    System.out.println("");
+                    
                 }        
-                /*
-                 * 
-                */       
-
+      
             } catch (InputMismatchException e) {
                 //clear screen
                 System.out.print("\033[H\033[2J");  

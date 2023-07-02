@@ -39,9 +39,11 @@ public class StoreDAO {
                 int productId = rs.getInt("productId"); 
                 String productName = rs.getString("productName"); 
                 int availQty = rs.getInt("availQty");  
-                double sellingPrice = rs.getDouble("sellingPrice");
+                double buyingPrice = rs.getDouble("buyingPrice");
             
-                p = new Product(productId, productName, availQty, sellingPrice);
+                //double sellingPrice = rs.getDouble("sellingPrice");
+            
+                p = new Product(productId, productName, availQty, buyingPrice);
                 
                 //place data in hashmap
                 //key value productId
@@ -111,7 +113,7 @@ public class StoreDAO {
                   
             while( rs.next() ){
                 return new Product(rs.getInt("productId"), rs.getString("productName"), 
-                                rs.getInt("availQty"),rs.getDouble("sellingPrice"));          
+                                rs.getInt("availQty"),rs.getDouble("buyingPrice"));          
             }               
         }
         catch (SQLException e) {
@@ -134,7 +136,7 @@ public class StoreDAO {
                   
             while( rs.next() ){
                 return new Product(rs.getInt("productId"), rs.getString("productName"), 
-                                rs.getInt("availQty"),rs.getDouble("sellingPrice"));     
+                                rs.getInt("availQty"),rs.getDouble("buyingPrice"));     
             }
    
         }

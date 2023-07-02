@@ -29,6 +29,7 @@ public class Product extends Item{
         this.productId = productId; 
         this.productName = productName;
         this.availQty = availQty; 
+        this.buyingPrice = buyingPrice;     
         this.sellingPrice = (buyingPrice * 0.5) + buyingPrice;
     }
 
