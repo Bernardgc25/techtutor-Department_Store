@@ -20,6 +20,7 @@ public class Product extends Item{
         this.sellingPrice = (buyingPrice * 0.5) + buyingPrice;
     }
 
+
     /////////////////test//////////////////
     //retrieve product from database
     public Product(int productId, String productName, int availQty, double buyingPrice) {
@@ -32,27 +33,7 @@ public class Product extends Item{
     }
 
 
-    //retrieve product from database
-    public Product(int prodId) {
-        //super(ItemN, Ctgy, buyingP);
-      
-        this.productId = prodId; 
-  
-    }
-
-    public Product(int prodId, String ItemN) {
-        this.productId = prodId; 
-        this.productName = ItemN;
-    }
-
-
-    public Product(int prodId, String ItemN, int pQty) {
-        this.productId = prodId; 
-        this.productName = ItemN;
-        this.availQty = pQty; 
-    }
-
-
+    
     /////////////////////////////test///////////////////////
 
     //setters and getters

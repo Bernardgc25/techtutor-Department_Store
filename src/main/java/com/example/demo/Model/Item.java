@@ -1,7 +1,7 @@
 package com.example.demo.Model;
 
 public class Item{
-    protected String Itemname, Category; 
+    protected String ItemName, Category; 
     protected double buyingPrice; 
 
     //constructors
@@ -9,19 +9,19 @@ public class Item{
 
     }
     
-    public Item(String Itemname, String Category, double buyingPrice){
-        this.Itemname = Itemname; 
+    public Item(String ItemName, String Category, double buyingPrice){
+        this.ItemName = ItemName; 
         this.Category = Category; 
         this.buyingPrice = buyingPrice; 
     }
 
     //setters and getters
     public String getItemname() {
-        return Itemname;
+        return ItemName;
     }
 
-    public void setItemname(String itemname) {
-        Itemname = itemname;
+    public void setItemname(String ItemName) {
+        this.ItemName = ItemName;
     }
 
     public String getCategory() {

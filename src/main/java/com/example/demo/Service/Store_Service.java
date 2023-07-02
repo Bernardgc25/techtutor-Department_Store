@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import java.lang.*;
+import java.util.Formatter; 
 import com.example.demo.DAO.AdminDAO;
 import com.example.demo.DAO.StoreDAO;
 import com.example.demo.Model.Product;
@@ -24,7 +25,7 @@ public class Store_Service implements Store_Service_Interface{
     Scanner scanner;
     Product newproduct = new Product();
     char choice = '\0';
-    Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
+    //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
     ArrayList<Double> expenses = new ArrayList<Double>();
 
         StoreDAO sdao;
@@ -75,21 +76,22 @@ public class Store_Service implements Store_Service_Interface{
 
                 //display products           
                 System.out.println("list of products:"); 
+                
+                /*
                 for(Map.Entry<Integer, Product> p:pset)
                 {
                     //System.out.println(":Key is "+p.getKey());
                     Product pobj=p.getValue();
                     //System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
                     //    + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
-                   /* 
+                    
                     System.out.println("Product Id:" + pobj.getProductName());
                     System.out.println("Product Name: " +pobj.getProductName()); 
                     System.out.println("Category: " +pobj.getCategory());
                     System.out.println("Quantity: " +pobj.getAvailableQuantity());
                     System.out.println("Price: " +pobj.getSellingPrice());
-                    */
-               
                 }
+                */
                     
                 System.out.println("");
                 System.out.println("");
@@ -104,6 +106,7 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.flush();   
 
                 System.out.println("list of products:"); 
+                /* 
                 for(Map.Entry<Integer, Product> p:pset)
                 {
                     //System.out.println(":Key is "+p.getKey());
@@ -111,6 +114,7 @@ public class Store_Service implements Store_Service_Interface{
                     System.out.println("Product Id:" +pobj.getProductName() + "Product Name: " +pobj.getProductName() 
                         + "Category: " +pobj.getCategory() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
                 }
+                */
                 
                 System.out.println("");
                 System.out.println("delete more task?");
@@ -154,20 +158,36 @@ public class Store_Service implements Store_Service_Interface{
         System.out.print("\033[H\033[2J");  
         System.out.flush();
 
-        if(listOfproduct.isEmpty()){
-            System.out.print("list is empty!! ");        
-        }
-        else{
-            //display
-            System.out.println("list of products:"); 
+            Map<Integer, Product> map_product = new HashMap<Integer, Product>();
+          
+            //invoke serviceDAO
+            map_product = sdao.displayallProducts();
+        
+            if(map_product.isEmpty()){
+                System.out.println("list is empty!! ");
+            }
+            else{
+                      //display
+                System.out.println("list of products:"); 
 
-            //retrieve from database 
-            Product sp = sdao.displayallProducts();
-            //display all products, hashmap 
-
-
+                //display all products, 
+                ////////////////////////////
+                Formatter fmt = new Formatter();  
+                fmt.format("%15s %15s %15s %15s\n", "productID", "productName", "Qty", "sellingPrice");  
+        
+                //iterate over by value hashmap 
+                Set<Map.Entry<Integer, Product>> pset = map_product.entrySet();
             
-        }
+                for(Map.Entry<Integer, Product> p: pset){
+                    
+                    System.out.print(+p.getKey());
+                    Product pobj = p.getValue();
+
+                    System.out.println(" " + pobj.getItemname() + " " 
+                                + pobj.getAvailableQuantity() + " " + pobj.getSellingPrice());       
+                }
+            }
+          
             //return to option menu
             System.out.println("");
             System.out.print("(M) go back to menu: ");
@@ -177,12 +197,14 @@ public class Store_Service implements Store_Service_Interface{
             if(choice == 'm' || choice == 'M'){
                 return; 
             }    
+     
+        
 
         
 }
 
     @Override
-    public void dispProductbyCategory() {
+    public void displaybyCategory() {
     	//Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
         
         //clear screen
@@ -197,12 +219,19 @@ public class Store_Service implements Store_Service_Interface{
         }
         else{
         
-            for(Map.Entry<Integer, Product> p:pset){
+
+
+
+
+            /* 
+             for(Map.Entry<Integer, Product> p:pset){
             //System.out.println(":Key is "+p.getKey());
             Product pobj=p.getValue();
             System.out.println("Category: " +pobj.getCategory() + "Product Id:" +pobj.getProductName() + "Product Name: " 
             +pobj.getProductName() + "Quantity: " +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice());
-            }
+            } 
+            */
+            
         
         }
         
@@ -221,13 +250,14 @@ public class Store_Service implements Store_Service_Interface{
     public void dispsbyPrice() {
         //display by category
         System.out.println("Display by Category products:"); 
+        /* 
         for(Map.Entry<Integer, Product> p:pset){
             //System.out.println(":Key is "+p.getKey());
             Product pobj=p.getValue();
             System.out.println("Price: " +pobj.getSellingPrice() + "Product Id:" +pobj.getProductName() + "Product Name: " 
             +pobj.getProductName() + "Category: " +pobj.getCategory() +  "Quantity: " +pobj.getAvailableQuantity());
         }    
-    
+        */
     
     
     }
@@ -528,6 +558,7 @@ public class Store_Service implements Store_Service_Interface{
                         (left, right) -> left,
                         LinkedHashMap::new));
 
+            /*     
             System.out.println("list of products:"); 
             for(Map.Entry<Integer, Product> p:pset){
                 //System.out.println(":Key is "+p.getKey());
@@ -535,6 +566,7 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.println("Product Name: " +pobj.getProductName() + "Product Id:" +pobj.getProductId() +"Quantity: " 
                 +pobj.getAvailableQuantity() + "Price: " +pobj.getSellingPrice() + "Category: " +pobj.getCategory());
                 }
+            */    
         }
             //return to option menu
             System.out.println("");

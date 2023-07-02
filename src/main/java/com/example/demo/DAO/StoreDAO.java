@@ -1,6 +1,10 @@
 package com.example.demo.DAO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.example.demo.Util.DataConnect;
 import com.example.demo.Model.Product;
 
@@ -11,6 +15,42 @@ public class StoreDAO {
     public StoreDAO(){
         con = DataConnect.getconnect(); 
        
+    }
+
+
+    //display all products, hashamp return method 
+    public HashMap<Integer, Product>displayallProducts(){
+        HashMap<Integer, Product> map_product = new HashMap<>();
+        Product p; 
+
+        try {
+            String sql = "SELECT * from Product";
+            PreparedStatement ps = con.prepareStatement(sql);
+                 
+            ResultSet rs = ps.executeQuery(); 
+                  
+            while( rs.next() ){
+
+                int productId = rs.getInt("productId"); 
+                String productName = rs.getString("productName"); 
+                int availQty = rs.getInt("availQty");  
+                double sellingPrice = rs.getDouble("sellingPrice");
+            
+                p = new Product(productId, productName, availQty, sellingPrice);
+                
+                //place data in hashmap
+                map_product.put(productId, p);
+                   
+            }
+            return map_product;
+                        
+        }
+        catch (SQLException e) {
+               System.out.println(e.getMessage());
+        }
+            
+            return null;
+         
     }
 
 
@@ -44,7 +84,7 @@ public class StoreDAO {
             
             return null;
          
-        }
+    }
 
     //retrieve product by productName
     public Product searchProductName(String productName){
@@ -74,7 +114,7 @@ public class StoreDAO {
             
             return null;
          
-        }
+    }
 
 
 

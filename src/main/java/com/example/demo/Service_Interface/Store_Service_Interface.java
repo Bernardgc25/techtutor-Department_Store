@@ -17,7 +17,7 @@ public interface Store_Service_Interface {
     public void dispsallProduct();
 
     //display list of products 
-    public void dispProductbyCategory();
+    public void displaybyCategory();
 
     //display by price
     public void dispsbyPrice();

@@ -63,7 +63,7 @@ public class optionMenu {
                     break;
                 //Display products by Category
                 case 4:
-                    sm.dispProductbyCategory(); 
+                    sm.displaybyCategory(); 
                     break;
                 //Display total Expenses
                 case 5:
@@ -136,7 +136,7 @@ public class optionMenu {
                     break;
                 //display all products by category
                 case 3:
-                    sm.dispProductbyCategory(); 
+                    sm.displaybyCategory(); 
                     break;     
                 }       
             } 
