@@ -32,7 +32,7 @@ public interface Store_Service_Interface {
     public void dispExpenses();
 
     //display total profit 
-    public void dispProfit();
+    public void dispProfitbyCategory();
 
     //sort by price low to high
     public void sortbyPrice();

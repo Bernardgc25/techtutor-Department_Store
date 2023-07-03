@@ -24,9 +24,9 @@ public class Store_Service implements Store_Service_Interface{
     HashMap<Integer, Product> listOfproduct = new HashMap<>();
     Scanner scanner;
     Product newproduct = new Product();
-    char choice = '\0';
+    //char choice = '\0';
     //Set<Map.Entry<Integer, Product>> pset = listOfproduct.entrySet();
-    ArrayList<Double> expenses = new ArrayList<Double>();
+    //ArrayList<Double> expenses = new ArrayList<Double>();
 
         StoreDAO sdao;
         
@@ -59,7 +59,7 @@ public class Store_Service implements Store_Service_Interface{
         newproduct.setBuyingPrice(buyingP);
         
         //add buying price to expenses
-        expenses.add(buyingP);
+        //expenses.add(buyingP);
 
         //add product to hashmap
         //listOfproduct.put(newproduct.getProductName(), newproduct);
@@ -123,7 +123,7 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.println("");
                 System.out.print("Enter a choice: ");
                     
-                choice = scanner.next().charAt(0);
+                char choice = scanner.next().charAt(0);
 
                     //clear screen
                     System.out.print("\033[H\033[2J");  
@@ -142,7 +142,7 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.println("(M) go back to menu: ");
                 System.out.println("");
                 System.out.print("Enter a choice: ");
-                    choice = scanner.next().charAt(0);
+                    char  choice = scanner.next().charAt(0);
                         if(choice == 'm' || choice == 'M'){
                             remove_prod = false;
                         }
@@ -197,7 +197,7 @@ public class Store_Service implements Store_Service_Interface{
                     //System.out.println("");
                     //System.out.print("Enter a choice: ");
 
-                    choice = scanner.next().charAt(0);
+                    char choice = scanner.next().charAt(0);
                     Character m = 'm';
                     Character M = 'M';
                 
@@ -339,7 +339,7 @@ public class Store_Service implements Store_Service_Interface{
                     //System.out.println("");
                     //System.out.print("Enter a choice: ");
 
-                    choice = scanner.next().charAt(0);
+                    char choice = scanner.next().charAt(0);
                     Character m = 'm';
                     Character M = 'M';
                 
@@ -410,7 +410,7 @@ public class Store_Service implements Store_Service_Interface{
 
                     //ask user again
                     System.out.println("press a character and Enter to continue");
-                    choice = scanner.next().charAt(0);
+                    char choice = scanner.next().charAt(0);
 
                     //clear screen
                     System.out.print("\033[H\033[2J");  
@@ -459,7 +459,7 @@ public class Store_Service implements Store_Service_Interface{
                     System.out.println("");
                     System.out.print("Enter a choice: ");
 
-                    choice = scanner.next().charAt(0);
+                    char choice = scanner.next().charAt(0);
                     Character m = 'm';
                     Character M = 'M';
                     Character s = 's';
@@ -516,7 +516,7 @@ public class Store_Service implements Store_Service_Interface{
 
                     //ask user again
                     System.out.println("press a character and Enter to continue");
-                    choice = scanner.next().charAt(0);
+                    char choice = scanner.next().charAt(0);
 
                     //clear screen
                     System.out.print("\033[H\033[2J");  
@@ -560,7 +560,7 @@ public class Store_Service implements Store_Service_Interface{
                     System.out.println("");
                     System.out.print("Enter a choice: ");
 
-                    choice = scanner.next().charAt(0);
+                    char choice = scanner.next().charAt(0);
                     Character m = 'm';
                     Character M = 'M';
                     Character s = 's';
@@ -600,48 +600,68 @@ public class Store_Service implements Store_Service_Interface{
         System.out.print("\033[H\033[2J");  
         System.out.flush();
         
-        //display total expenses 
-        double sum = 0;
-        for(int i = 0; i < expenses.size(); i++){
-            sum += expenses.get(i);
-        }
-        
-        System.out.println("Total Expenses: $" + sum);
-    
-        //return to option menu
-        System.out.println("");
-        System.out.print("(M) go back to menu: ");
-        choice = scanner.next().charAt(0);
+        double expenses = sdao.totalExpenses();
+        System.out.println("Total Expenses: " + expenses);
 
-        System.out.println("");
-        if(choice == 'm' || choice == 'M'){
-            return; 
-        }    
+        boolean wrongcharacter = true;  
+        while(wrongcharacter){
+        
+            //return to option menu
+            System.out.println("");
+            System.out.print("(M) go back to menu: ");
+            char choice = scanner.next().charAt(0);
+
+            Character m = 'm';
+            Character M = 'M';
+            
+            if (m.equals(choice) || M.equals(choice)){
+                wrongcharacter = false; 
+            }
+        
+            else{
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                        
+                System.out.println("Invalid Character !");
+                wrongcharacter = true; 
+            }           
+        }
     }
 
     @Override
-    public void dispProfit() {
+    public void dispProfitbyCategory() {
         //clear screen
         System.out.print("\033[H\033[2J");  
         System.out.flush();
         
-        //display total expenses 
-        double sum = 0;
-        for(int i = 0; i < expenses.size(); i++){
-            sum += expenses.get(i);
-        }
-        
-        System.out.println("Total Profit: $" + sum);
-    
-        //return to option menu
-        System.out.println("");
-        System.out.print("(M) go back to menu: ");
-        choice = scanner.next().charAt(0);
+        double profit = sdao.totalExpenses();
+        System.out.println("Profit by Category: " + profit);
 
-        System.out.println("");
-        if(choice == 'm' || choice == 'M'){
-            return; 
-        }    
+        boolean wrongcharacter = true;  
+        while(wrongcharacter){
+        
+            //return to option menu
+            System.out.println("");
+            System.out.print("(M) go back to menu: ");
+            char choice = scanner.next().charAt(0);
+
+            Character m = 'm';
+            Character M = 'M';
+            
+            if (m.equals(choice) || M.equals(choice)){
+                wrongcharacter = false; 
+            }
+        
+            else{
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();
+                        
+                System.out.println("Invalid Character !");
+                wrongcharacter = true; 
+            }           
+        }
     }
 
     @Override
@@ -678,7 +698,7 @@ public class Store_Service implements Store_Service_Interface{
             //return to option menu
             System.out.println("");
             System.out.print("(M) go back to menu: ");
-            choice = scanner.next().charAt(0);
+            char choice = scanner.next().charAt(0);
 
             System.out.println("");
             if(choice == 'm' || choice == 'M'){

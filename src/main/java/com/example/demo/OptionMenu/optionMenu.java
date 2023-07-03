@@ -71,7 +71,7 @@ public class optionMenu {
                     break;
                 //Display total Profits
                 case 6:
-                    sm.dispProfit(); 
+                    sm.dispProfitbyCategory(); 
                     break;                    
                 }       
             } 

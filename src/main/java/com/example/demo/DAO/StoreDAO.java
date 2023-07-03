@@ -172,6 +172,30 @@ public class StoreDAO {
             
     }
 
+        //retrieve expenses, sum of buying price 
+    public double profitbyCategory(){
+        double bPrice = 0.0;
+    
+
+        try {
+            String sql = "SELECT Category, SUM(buyingPrice) FROM Item GROUP BY Category"; 
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery(); 
+
+            //get the sum of column name = buyingPrice, 
+            rs.next();
+                bPrice = rs.getDouble(1);
+                
+        }
+        catch (SQLException e) {
+               System.out.println(e.getMessage());
+        }
+      
+        return bPrice;
+            
+    }
+   
 
 
 
