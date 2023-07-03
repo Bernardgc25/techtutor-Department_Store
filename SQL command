@@ -113,3 +113,11 @@ select * from  Item where Category = 'Grocery';
 select * from  Item where Category = 'Toiletry ';
 select * from  Item where Category = 'Vegetables';
 select * from  Item where Category = 'Stationary';
+
+
+--sum of Item (buying Price)
+SELECT SUM(buyingPrice) from Product;  
+SELECT SUM(availQty) from Product; 
+
+--display profits by category 
+SELECT Category, SUM(buyingPrice) FROM Item GROUP BY Category;

@@ -148,5 +148,31 @@ public class StoreDAO {
     }
 
 
+    //retrieve expenses, sum of buying price 
+    public double totalExpenses(){
+        double bPrice = 0.0;
+        //int qty = 0; 
+
+        try {
+            String sql = "SELECT SUM(buyingPrice) from Product"; 
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery(); 
+
+            //get the sum of column name = buyingPrice, 
+            rs.next();
+                bPrice = rs.getDouble(1);
+                
+        }
+        catch (SQLException e) {
+               System.out.println(e.getMessage());
+        }
+      
+        return bPrice;
+            
+    }
+
+
+
 
 }
