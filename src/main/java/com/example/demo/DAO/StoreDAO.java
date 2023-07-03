@@ -41,12 +41,10 @@ public class StoreDAO {
                 int availQty = rs.getInt("availQty");  
                 double buyingPrice = rs.getDouble("buyingPrice");
             
-                //double sellingPrice = rs.getDouble("sellingPrice");
-            
                 p = new Product(productId, productName, availQty, buyingPrice);
                 
                 //place data in hashmap
-                //key value productId
+                //key value Integer = productId
                 map_product.put(productId, p);
                    
             }
@@ -78,7 +76,7 @@ public class StoreDAO {
             while( rs.next() ){
                 String ItemName = rs.getString("ItemName"); 
                 String Category = rs.getString("Category");
-                double buyingPrice = rs.getDouble("buyingPrice");; 
+                double buyingPrice = rs.getDouble("buyingPrice");
 
                 i = new Item(ItemName, Category, buyingPrice);
                 //key value itemName
@@ -173,30 +171,37 @@ public class StoreDAO {
     }
 
         //retrieve expenses, sum of buying price 
-    public double profitbyCategory(){
-        double bPrice = 0.0;
+    public HashMap<String, Item>profitbyCategory(){
+        
+        HashMap<String, Item> map_item = new HashMap<>();
+        Item i; 
     
-
         try {
-            String sql = "SELECT Category, SUM(buyingPrice) FROM Item GROUP BY Category"; 
+            String sql = "SELECT * from  Item";
             PreparedStatement ps = con.prepareStatement(sql);
-
+        
             ResultSet rs = ps.executeQuery(); 
+                  
+            while( rs.next() ){
+                String ItemName = rs.getString("ItemName"); 
+                String Category = rs.getString("Category");
+                double buyingPrice = rs.getDouble("buyingPrice");
 
-            //get the sum of column name = buyingPrice, 
-            rs.next();
-                bPrice = rs.getDouble(1);
+                i = new Item(ItemName, Category, buyingPrice);
                 
+                //place data in hashmap
+                //key value string = itemName
+                map_item.put(ItemName, i);
+          
+            }
+            return map_item;
+                        
         }
         catch (SQLException e) {
                System.out.println(e.getMessage());
         }
-      
-        return bPrice;
             
-    }
-   
-
-
-
+            return null;
+    }     
+    
 }
